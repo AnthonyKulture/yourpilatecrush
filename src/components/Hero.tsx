@@ -7,7 +7,7 @@ import React from 'react';
  */
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-hero-gradient px-gutter-mobile sm:px-gutter-desktop text-cream">
+    <section className="relative min-h-[90vh] flex flex-col items-center pt-32 pb-20 sm:pt-40 sm:pb-32 overflow-hidden bg-hero-gradient px-gutter-mobile sm:px-gutter-desktop text-cream">
       
       {/* Decorative Central Circle (UI/UX Pro Max Liquid Glass) */}
       <div 

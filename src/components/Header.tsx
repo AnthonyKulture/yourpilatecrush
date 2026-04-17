@@ -61,7 +61,7 @@ export default function Header() {
   return (
     <>
       {/* --- DESKTOP FLOATING DOCK --- */}
-      <header className="fixed top-5 left-0 right-0 z-50 pointer-events-none hidden md:flex justify-end pr-8">
+      <header className="fixed top-5 left-0 right-0 z-50 pointer-events-none hidden lg:flex justify-end pr-8">
         <GlassEffect 
           className={`pointer-events-auto rounded-full transition-all duration-500 ${scrolled ? 'shadow-2xl' : 'shadow-lg'}`}
           style={{
@@ -75,7 +75,7 @@ export default function Header() {
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           }}
         >
-          <nav className="flex items-center gap-1 px-5 py-2.5">
+          <nav className="flex items-center gap-1 px-4 py-2">
             {/* Brand Logo inside Dock */}
             <Link href="/" className={`flex items-center gap-3 pr-6 mr-4 border-r group ${pastHero ? 'border-burgundy-deep/15' : 'border-white/20'}`}>
                 <div className="w-8 h-8 rounded-full bg-burgundy-deep flex items-center justify-center text-gold-champagne font-display italic text-lg flex-shrink-0">
@@ -112,7 +112,7 @@ export default function Header() {
       </header>
 
       {/* --- MOBILE FLOATING BURGER --- */}
-      <div className="fixed z-[60] md:hidden" style={{ top: '1.5rem', right: '1.5rem' }}>
+      <div className="fixed z-[60] lg:hidden" style={{ top: '1.5rem', right: '1.5rem' }}>
         <GlassEffect 
           onClick={() => setIsOpen(!isOpen)}
           className={`rounded-full p-4 cursor-pointer transition-all duration-500 active:scale-90 ${isOpen ? 'bg-burgundy-deep' : ''}`}
@@ -138,7 +138,7 @@ export default function Header() {
       </div>
 
       {/* Brand Watermark on Mobile */}
-      <div className="fixed top-6 left-6 z-50 md:hidden pointer-events-none">
+      <div className="fixed top-6 left-6 z-50 lg:hidden pointer-events-none">
         <div className="w-10 h-10 rounded-full bg-burgundy-deep flex items-center justify-center text-gold-champagne font-display italic text-xl shadow-lg border border-gold-champagne/20">
           C
         </div>
@@ -146,7 +146,7 @@ export default function Header() {
 
       {/* --- MOBILE LIQUID GLASS MENU --- */}
       <div 
-        className="fixed inset-0 z-40 md:hidden"
+        className="fixed inset-0 z-40 lg:hidden"
         style={{
           // GPU-composited transform animation — no layout triggers
           transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
