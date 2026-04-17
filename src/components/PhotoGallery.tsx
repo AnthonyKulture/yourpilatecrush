@@ -13,8 +13,8 @@ import GallerySchema from './seo/GallerySchema';
 export default function PhotoGallery() {
   const t = useTranslations('home.gallery');
 
-  // Total 13 images - Shuffled for better visual rhythm (mixed details and people)
-  const indices = [10, 1, 2, 5, 6, 3, 4, 7, 9, 8, 12, 11, 13];
+  // Total 13 images - Shuffled for better mobile rhythm (avoiding portrait sequences)
+  const indices = [10, 1, 2, 5, 3, 4, 6, 11, 12, 8, 7, 9, 13];
 
   return (
     <section className="w-full bg-cream pt-spacing-3xl pb-spacing-2xl px-gutter-mobile sm:px-gutter-desktop">
