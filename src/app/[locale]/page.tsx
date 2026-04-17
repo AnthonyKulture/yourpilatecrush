@@ -160,6 +160,7 @@ export default async function Home() {
       </section>
 
       {/* 06 - Atmosphere Gallery (Unified) */}
+      <Divider className="my-32" />
       <PhotoGallery />
 
       {/* 07 - Final Recommendation / Editorial Quote */}
