@@ -1,65 +1,227 @@
-import Image from "next/image";
+import Hero from "@/components/Hero";
+import IntroBand from "@/components/IntroBand";
+import MethodsSection from "@/components/MethodsSection";
+import MethodCard from "@/components/MethodCard";
+import SignatureCard from "@/components/SignatureCard";
+import Divider from "@/components/Divider";
+import ReformerCard from "@/components/ReformerCard";
+import TariffGrid from "@/components/TariffGrid";
+import TariffCard from "@/components/TariffCard";
+import DestinationCard from "@/components/DestinationCard";
+import EditorialQuote from "@/components/EditorialQuote";
+import Footer from "@/components/Footer";
 
+/**
+ * Candice Pilates Home Page
+ * Single-page orchestration of all design sections.
+ */
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="flex flex-col w-full">
+      {/* 01 - Hero Section */}
+      <Hero />
+
+      {/* 02 - Intro Band */}
+      <IntroBand />
+
+      {/* 03 - Methods Section */}
+      <MethodsSection>
+        {/* Method 01 */}
+        <MethodCard 
+          number="01"
+          title="Lagree Microformer"
+          italicWord="Microformer"
+          intensityLabel="MAXIMAL"
+          eyebrow="INTENSITÉ MAXIMALE · RÉSULTATS VISIBLES"
+          description={[
+            "La méthode Lagree est une révolution du fitness à haute intensité, conçue par Sébastien Lagree à Los Angeles.",
+            "Pratiquée sur le Microformer, cette session se concentre sur le temps sous tension pour une brûlure calorique post-séance exceptionnelle."
+          ]}
+          bullets={[
+            "Machine Microformer transportée et installée à domicile",
+            "Séances de 40 à 55 minutes",
+            "Résultats visibles dès 4 à 6 séances",
+            "Idéal pour sculpter, tonifier et améliorer l'endurance"
+          ]}
+          benefits={[
+            "Renforcement musculaire global",
+            "Silhouette affinée et dessinée",
+            "Cardio intégré sans impact",
+            "Gainage profond du core",
+            "Brûlure calorique prolongée",
+            "Posture et alignement optimisés"
+          ]}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Method 02 - Signature */}
+        <SignatureCard 
+          number="02"
+          title="Sculpt & Lagree Exclusif"
+          italicWord="Exclusif"
+          description="Notre session signature de 55 minutes combine le meilleur des deux mondes pour un travail complet et méticuleux."
+          phases={[
+            {
+              eyebrow: "PHASE 1 · 25 MIN",
+              title: "Lagree Microformer",
+              description: "Stimulation musculaire profonde et cardio sans impact."
+            },
+            {
+              eyebrow: "PHASE 2 · 25 MIN",
+              title: "Pilates Sculpt bas du corps",
+              description: "Travail ciblé pour des jambes affinées et une silhouette sculptée."
+            },
+            {
+              eyebrow: "PHASE 3 · 5 MIN",
+              title: "Cool Down",
+              description: "Retour au calme et étirements régénérateurs."
+            }
+          ]}
+        />
+
+        {/* Method 03 */}
+        <MethodCard 
+          number="03"
+          title="Pilates Sculpt & Flow"
+          italicWord="Flow"
+          intensityLabel="ESSENTIEL"
+          eyebrow="HARMONIE · SCULPT · FLUIDITÉ"
+          description={[
+            "Un cours dynamique qui allie la précision du Pilates au cardio léger et au flow.",
+            "L’accent est mis sur l’enchaînement fluide des mouvements pour sculpter le corps tout en améliorant la souplesse."
+          ]}
+          bullets={[
+            "Utilisation de petits accessoires (ballons, cercles, élastiques)",
+            "Alternance entre tonification et étirements actifs",
+            "Travail sur la fluidité et le rythme"
+          ]}
+          benefits={[
+            "Silhouette harmonieuse",
+            "Amélioration de la posture",
+            "Souplesse accrue",
+            "Reconnexion corps-esprit",
+            "Énergie revitalisée",
+            "Renforcement des muscles profonds"
+          ]}
+        />
+
+        {/* Method 04 */}
+        <MethodCard 
+          number="04"
+          title="Prenatal & Postnatal Pilates"
+          italicWord="Postnatal"
+          intensityLabel="ESSENTIEL"
+          eyebrow="BIEN-ÊTRE · ACCOMPAGNEMENT · SÉCURITÉ"
+          description={[
+            "Des séances adaptées pour accompagner la femme enceinte ou la nouvelle maman dans sa pratique physique."
+          ]}
+          bullets={[
+            "Exercices sécurisés et validés scientifiquement",
+            "Focus sur le périnée et la sangle abdominale profonde",
+            "Soulagement des maux de dos liés à la grossesse"
+          ]}
+          benefits={[
+            "Récupération post-partum optimisée",
+            "Renforcement du plancher pelvien",
+            "Réduction des tensions dorsales",
+            "Gestion du souffle et relaxation",
+            "Maintien de la forme physique",
+            "Confiance en son corps"
+          ]}
+        />
+
+        {/* Method 05 */}
+        <MethodCard 
+          number="05"
+          title="Senior Pilates / Mobilité"
+          italicWord="Mobilité"
+          intensityLabel="ESSENTIEL"
+          eyebrow="LONGÉVITÉ · MOBILITÉ · ÉQUILIBRE"
+          description={[
+            "Conçu pour les séniors ou toute personne souhaitant améliorer sa mobilité articulaire et son équilibre."
+          ]}
+          bullets={[
+            "Travail sur l'amplitude articulaire",
+            "Exercices d'équilibre et de prévention des chutes",
+            "Renforcement musculaire doux et fonctionnel"
+          ]}
+          benefits={[
+            "Autonomie renforcée",
+            "Articulations plus souples",
+            "Meilleur équilibre",
+            "Réduction des raideurs matinales",
+            "Amélioration de la vitalité",
+            "Lien social et bien-être"
+          ]}
+        />
+
+        <Divider />
+
+        <ReformerCard />
+      </MethodsSection>
+
+      {/* 04 - Tariffs Section */}
+      <TariffGrid>
+        <TariffCard 
+          index="01"
+          title="Lagree Microformer"
+          price1={{ label: "Séance unique", value: "190 €" }}
+          price2={{ label: "Forfait 10 séances", value: "1300 €" }}
+        />
+        <TariffCard 
+          index="02"
+          title="Sculpt & Lagree"
+          price1={{ label: "Séance unique", value: "190 €" }}
+          price2={{ label: "Forfait 10 séances", value: "1300 €" }}
+        />
+        <TariffCard 
+          index="03"
+          title="Pilates Foundation"
+          price1={{ label: "Séance unique", value: "150 €" }}
+          price2={{ label: "Forfait 10 séances", value: "1100 €" }}
+        />
+        <TariffCard 
+          index="04"
+          title="Pilates Sculpt"
+          price1={{ label: "Séance unique", value: "160 €" }}
+          price2={{ label: "Forfait 10 séances", value: "1200 €" }}
+        />
+        <TariffCard 
+          index="05"
+          title="Stretch & Restore"
+          price1={{ label: "Séance unique", value: "150 €" }}
+          price2={{ label: "Forfait 10 séances", value: "1100 €" }}
+        />
+        <TariffCard 
+          variant="inverted"
+          title="Forfaits"
+          highlight="Forfaits valables 3 mois à compter de la première séance."
+          price1={{ label: "", value: "" }} // Not used in inverted variant but typed
+        />
+      </TariffGrid>
+
+      {/* 05 - Destinations Section */}
+      <section className="flex flex-col lg:flex-row w-full overflow-hidden border-t border-burgundy-deep/10">
+        <DestinationCard 
+          season="Mai — Octobre"
+          title="French Riviera"
+          italicWord="Riviera"
+          locations={["Monaco", "Nice", "Cannes", "Saint-Tropez"]}
+          description="Intervention à votre domicile, dans votre villa ou sur votre yacht. Un accompagnement sur-mesure dans les lieux les plus prestigieux de la Côte d'Azur."
+        />
+        <DestinationCard 
+          season="Novembre — Avril"
+          title="Saint-Barth"
+          italicWord="Barth"
+          locations={["Gustavia", "St-Jean", "Flamands", "Lorient"]}
+          description="Candice vous accompagne durant la saison hivernale pour vos séances privées dans le cadre exclusif de votre villa à Saint-Barthélemy."
+        />
+      </section>
+
+      {/* 06 - Final Recommendation / Editorial Quote */}
+      <EditorialQuote />
+
+      {/* 07 - Footer */}
+      <Footer />
+    </main>
   );
 }

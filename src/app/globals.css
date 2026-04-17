@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Colors - Candice Pilates Branding */
+  --color-burgundy-deep: #4a1613;
+  --color-maroon: #5b0f0f;
+  --color-red-primary: #7a1616;
+  --color-red-bright: #951d1e;
+  --color-red-accent: #ae3134;
+  --color-gold-champagne: #e4c898;
+  --color-sand: #e9ddd1;
+  --color-cream: #f7eee5;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Typography */
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Spacing & Scaffolding */
+  --container-max: 1180px;
+  --prose-max: 720px;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 48px;
+  --spacing-xl: 80px;
+  --spacing-2xl: 120px;
+  --spacing-3xl: 160px;
+  
+  --spacing-gutter-desktop: 48px;
+  --spacing-gutter-mobile: 24px;
+  
+  /* Backgrounds */
+  --background-image-hero-gradient: linear-gradient(180deg, #7A1616 0%, #951D1E 100%);
+  
+  /* Radii */
+  --radius-pill: 999px;
+  
+  /* Animations (UI/UX Pro Max) */
+  --animate-float: float 6s ease-in-out infinite;
+  
+  --default-transition-duration: 800ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-burgundy-deep);
+}
+
+/* Custom Base Styles */
+@layer base {
+  body {
+    @apply bg-cream text-burgundy-deep font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-normal leading-[1.1];
+  }
+}
+
+/* UI/UX Pro Max & Signature Utilities */
+@layer utilities {
+  .signature-italic {
+    @apply font-display italic;
+  }
+
+  /* Signature word contrast rule */
+  .bg-dark .signature-italic {
+    @apply text-gold-champagne;
+  }
+  
+  .bg-light .signature-italic {
+    @apply text-red-accent;
+  }
+
+  /* Liquid Glass (UI/UX Pro Max) */
+  .glass-premium {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  /* Editorial Divider */
+  .editorial-divider {
+    @apply flex items-center gap-4 w-full max-w-[720px] mx-auto my-20;
+  }
+  .editorial-divider::before, 
+  .editorial-divider::after {
+    content: "";
+    @apply h-[1px] flex-1 bg-burgundy-deep;
+  }
+  .divider-diamond {
+    @apply w-2 h-2 rotate-45 bg-red-accent;
+  }
 }
