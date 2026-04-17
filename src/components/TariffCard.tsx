@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface TariffCardProps {
   index?: string;
@@ -21,6 +22,7 @@ export default function TariffCard({
   highlight,
   variant = 'standard'
 }: TariffCardProps) {
+  const t = useTranslations('home.tariffs.inverted');
   const isInverted = variant === 'inverted';
 
   return (
@@ -39,9 +41,9 @@ export default function TariffCard({
             </p>
             <div className="h-[1px] bg-gold-champagne w-10 opacity-30" />
             <div className="space-y-4 text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-gold-champagne/60">
-               <p>Déplacement inclus</p>
-               <p>Matériel fourni</p>
-               <p>Paiement à la séance ou au forfait</p>
+               <p>{t('travel')}</p>
+               <p>{t('equipment')}</p>
+               <p>{t('payment')}</p>
             </div>
           </div>
         ) : (

@@ -1,43 +1,31 @@
 import { MetadataRoute } from 'next';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourpilatecrush.studio';
+const locales = ['fr', 'en'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Routes statiques
-  const staticRoutes = [
-    {
-      url: SITE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/#pratiques`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/#tarifs`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
+  const routes = [
+    { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
+    { path: '/mentions-legales', priority: 0.3, changeFrequency: 'monthly' as const },
   ];
 
-  /*
-   * // Exemple de génération dynamique pour le futur blog
-   * import { getAllArticles } from '@/lib/articles';
-   * const articles = getAllArticles();
-   * const blogRoutes = articles.map(article => ({
-   *   url: `${SITE_URL}/blog/${article.slug}`,
-   *   lastModified: new Date(article.updatedAt || article.publishedAt),
-   *   changeFrequency: 'monthly' as const,
-   *   priority: 0.6,
-   * }));
-   * 
-   * return [...staticRoutes, ...blogRoutes];
-   */
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  return [...staticRoutes];
+  for (const locale of locales) {
+    for (const route of routes) {
+      sitemapEntries.push({
+        url: `${SITE_URL}/${locale}${route.path}`,
+        lastModified: new Date(),
+        changeFrequency: route.changeFrequency,
+        priority: route.priority,
+        alternates: {
+          languages: Object.fromEntries(
+            locales.map((l) => [l, `${SITE_URL}/${l}${route.path}`])
+          ),
+        },
+      });
+    }
+  }
+
+  return sitemapEntries;
 }

@@ -1,18 +1,18 @@
 import { ImageResponse } from 'next/og';
+import { getTranslations } from 'next-intl/server';
 
 export const runtime = 'edge';
 
 // Dimensions standards OG Image (1200x630)
-export const alt = 'Your Pilate Crush - Séances privées sur la Côte d\'Azur et Saint-Barthélemy';
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = 'image/png';
 
-export default async function Image() {
-  // Optionnel: Chargement de Custom Fonts pour un rendu exact
-  // const interRegular = await fetch(new URL('./fonts/Inter-Regular.ttf', import.meta.url)).then((res) => res.arrayBuffer());
+export default async function Image({ params }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale: params.locale, namespace: 'home.hero' });
+  const tSeo = await getTranslations({ locale: params.locale, namespace: 'seo.home' });
 
   return new ImageResponse(
     (
@@ -43,6 +43,17 @@ export default async function Image() {
             textAlign: 'center',
           }}
         >
+          <span
+             style={{
+               fontSize: '18px',
+               color: '#D4AF37', // gold-champagne
+               letterSpacing: '4px',
+               marginBottom: '20px',
+               textTransform: 'uppercase',
+             }}
+          >
+            Your Pilate Crush
+          </span>
           <h1
             style={{
               fontSize: '84px',
@@ -53,7 +64,7 @@ export default async function Image() {
               letterSpacing: '-2px',
             }}
           >
-            Your Pilate Crush
+            Pilates & Lagree Privés
           </h1>
           <p
             style={{
@@ -65,7 +76,7 @@ export default async function Image() {
               opacity: 0.8,
             }}
           >
-            Séances privées de Pilates & Lagree
+            {tSeo('description')}
           </p>
           <div
             style={{
@@ -78,9 +89,9 @@ export default async function Image() {
               letterSpacing: '2px',
             }}
           >
-            <span>Côte d'Azur</span>
+            <span>{t('seasons.summer.location')}</span>
             <span>•</span>
-            <span>Saint-Barthélemy</span>
+            <span>{t('seasons.winter.location')}</span>
           </div>
         </div>
       </div>

@@ -5,10 +5,12 @@ interface MethodCardProps {
   title: string;
   italicWord: string;
   intensityLabel: string;
+  intensityValue: string;
   eyebrow: string;
   description: string[];
   bullets: string[];
   benefits: string[];
+  benefitsLabel: string;
 }
 
 /**
@@ -20,14 +22,18 @@ export default function MethodCard({
   title,
   italicWord,
   intensityLabel,
+  intensityValue,
   eyebrow,
   description,
   bullets,
-  benefits
+  benefits,
+  benefitsLabel
 }: MethodCardProps) {
   // Logic to inject the italic word into the title
   const renderTitle = () => {
+    if (!italicWord) return title;
     const parts = title.split(italicWord);
+    if (parts.length === 1) return title;
     return (
       <>
         {parts[0]}
@@ -58,8 +64,8 @@ export default function MethodCard({
           </div>
 
           <div className="flex items-center gap-3 text-[13px] uppercase tracking-widest">
-            <span className="text-burgundy-deep/40">Intensité :</span>
-            <span className="text-red-accent font-bold">{intensityLabel}</span>
+            <span className="text-burgundy-deep/40">{intensityLabel} :</span>
+            <span className="text-red-accent font-bold">{intensityValue}</span>
           </div>
 
           <div className="space-y-4 max-w-[540px]">
@@ -86,7 +92,7 @@ export default function MethodCard({
 
       {/* Zone Droite (40%) - Bordeaux */}
       <div className="flex-1 bg-red-primary p-8 sm:p-12 flex flex-col justify-center">
-        <h4 className="text-[11px] font-sans font-medium uppercase tracking-eyebrow text-cream/40 mb-8">Bénéfices</h4>
+        <h4 className="text-[11px] font-sans font-medium uppercase tracking-eyebrow text-cream/40 mb-8">{benefitsLabel}</h4>
         <ul className="space-y-0 text-cream">
           {benefits.map((benefit, i) => (
             <li 

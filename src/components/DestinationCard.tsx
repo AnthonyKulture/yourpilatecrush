@@ -20,7 +20,9 @@ export default function DestinationCard({
   description
 }: DestinationCardProps) {
   const renderTitle = () => {
+    if (!italicWord) return title;
     const parts = title.split(italicWord);
+    if (parts.length === 1) return title;
     return (
       <>
         {parts[0]}

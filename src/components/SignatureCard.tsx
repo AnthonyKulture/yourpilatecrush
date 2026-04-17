@@ -12,6 +12,8 @@ interface SignatureCardProps {
   italicWord: string;
   description: string;
   phases: Phase[];
+  signatureLabel: string;
+  timelineLabel: string;
 }
 
 /**
@@ -23,10 +25,14 @@ export default function SignatureCard({
   title,
   italicWord,
   description,
-  phases
+  phases,
+  signatureLabel,
+  timelineLabel
 }: SignatureCardProps) {
   const renderTitle = () => {
+    if (!italicWord) return title;
     const parts = title.split(italicWord);
+    if (parts.length === 1) return title;
     return (
       <>
         {parts[0]}
@@ -42,7 +48,7 @@ export default function SignatureCard({
       <div className="flex-1 p-8 sm:p-12 space-y-8 flex flex-col justify-center">
         <div className="space-y-4">
            <span className="text-[11px] font-sans font-medium uppercase tracking-eyebrow text-gold-champagne/60">
-             Session Signature
+             {signatureLabel}
            </span>
            <h3 className="text-[36px] sm:text-[48px] leading-tight text-cream">
              {renderTitle()}
@@ -55,7 +61,7 @@ export default function SignatureCard({
 
       {/* Col droite - Phases */}
       <div className="lg:w-[45%] bg-maroon p-8 sm:p-12 space-y-10">
-        <h4 className="text-[11px] font-sans font-medium uppercase tracking-eyebrow text-cream/40 mb-6 underline underline-offset-8">Déroulé de la séance</h4>
+        <h4 className="text-[11px] font-sans font-medium uppercase tracking-eyebrow text-cream/40 mb-6 underline underline-offset-8">{timelineLabel}</h4>
         <div className="space-y-12">
           {phases.map((phase, i) => (
             <div key={i} className="space-y-3">

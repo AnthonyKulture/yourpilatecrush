@@ -1,0 +1,230 @@
+{
+  "common": {
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "blog": "Blog"
+    },
+    "footer": {
+      "cta": "Commençons <em className='signature-italic text-gold-champagne font-normal'>ensemble</em>",
+      "pills": {
+        "whatsapp": "WhatsApp",
+        "email": "Email"
+      },
+      "mentions": "Mentions Légales",
+      "copyright": "© {year} Your Pilate Crush",
+      "description": "Pilates & Lagree Privés — Côte d'Azur & Saint-Barthélemy"
+    },
+    "buttons": {
+      "learnMore": "En savoir plus",
+      "subscribe": "S'abonner",
+      "contact": "Contact",
+      "switchLanguage": "Changer de langue"
+    }
+  },
+  "home": {
+    "welcome": "Bonjour {name} !",
+    "hero": {
+      "eyebrow": "STOTT PILATES · CERTIFICATION LAGREE",
+      "title": "Move with <em className='signature-italic text-gold-champagne font-normal'>intention.</em>",
+      "subtitle": "Pilates · Lagree",
+      "seasons": {
+        "summer": {
+          "label": "Mai — Octobre",
+          "location": "Côte d'Azur"
+        },
+        "winter": {
+          "label": "Novembre — Avril",
+          "location": "Saint-Barthélemy"
+        }
+      }
+    },
+    "intro": {
+      "quote": "« Le vrai luxe, c'est de prendre soin de soi avec <em className='not-italic text-gold-champagne'>intention</em>… <br className='hidden sm:block' /> un corps fort, une posture affirmée, une présence qui se voit. »"
+    },
+    "methods": {
+      "eyebrow": "NOS PRATIQUES",
+      "sectionTitle": "Des méthodes d'exception <br /> <em className='signature-italic text-red-accent font-normal'>au service de votre corps</em>",
+      "labels": {
+        "intensity": "Intensité",
+        "benefits": "Bénéfices",
+        "signature": "Session Signature",
+        "timeline": "Déroulé de la séance"
+      },
+      "method1": {
+        "title": "Lagree Microformer",
+        "italicWord": "Microformer",
+        "eyebrow": "INTENSITÉ MAXIMALE · RÉSULTATS VISIBLES",
+        "intensity": "MAXIMAL",
+        "description": [
+          "La méthode Lagree est une révolution du fitness à haute intensité, conçue par Sébastien Lagree à Los Angeles.",
+          "Pratiquée sur le Microformer, cette session se concentre sur le temps sous tension pour une brûlure calorique post-séance exceptionnelle."
+        ],
+        "bullets": [
+          "Machine Microformer transportée et installée à domicile",
+          "Séances de 40 à 55 minutes",
+          "Résultats visibles dès 4 à 6 séances",
+          "Idéal pour sculpter, tonifier et améliorer l'endurance"
+        ],
+        "benefits": [
+          "Renforcement musculaire global",
+          "Silhouette affinée et dessinée",
+          "Cardio intégré sans impact",
+          "Gainage profond du core",
+          "Brûlure calorique prolongée",
+          "Posture et alignement optimisés"
+        ]
+      },
+      "method2": {
+        "title": "Sculpt & Lagree Exclusif",
+        "italicWord": "Exclusif",
+        "description": "Notre session signature de 55 minutes combine le meilleur des deux mondes pour un travail complet et méticuleux.",
+        "phases": [
+          {
+            "eyebrow": "PHASE 1 · 25 MIN",
+            "title": "Lagree Microformer",
+            "description": "Stimulation musculaire profonde et cardio sans impact."
+          },
+          {
+            "eyebrow": "PHASE 2 · 25 MIN",
+            "title": "Pilates Sculpt bas du corps",
+            "description": "Travail ciblé pour des jambes affinées et une silhouette sculptée."
+          },
+          {
+            "eyebrow": "PHASE 3 · 5 MIN",
+            "title": "Cool Down",
+            "description": "Retour au calme et étirements régénérateurs."
+          }
+        ]
+      },
+      "method3": {
+        "title": "Pilates Sculpt & Flow",
+        "italicWord": "Flow",
+        "eyebrow": "HARMONIE · SCULPT · FLUIDITÉ",
+        "intensity": "ESSENTIEL",
+        "description": [
+          "Un cours dynamique qui allie la précision du Pilates au cardio léger et au flow.",
+          "L’accent est mis sur l’enchaînement fluide des mouvements pour sculpter le corps tout en améliorant la souplesse."
+        ],
+        "bullets": [
+          "Utilisation de petits accessoires (ballons, cercles, élastiques)",
+          "Alternance entre tonification et étirements actifs",
+          "Travail sur la fluidité et le rythme"
+        ],
+        "benefits": [
+          "Silhouette harmonieuse",
+          "Amélioration de la posture",
+          "Souplesse accrue",
+          "Reconnexion corps-esprit",
+          "Énergie revitalisée",
+          "Renforcement des muscles profonds"
+        ]
+      },
+      "method4": {
+        "title": "Prenatal & Postnatal Pilates",
+        "italicWord": "Postnatal",
+        "eyebrow": "BIEN-ÊTRE · ACCOMPAGNEMENT · SÉCURITÉ",
+        "intensity": "ESSENTIEL",
+        "description": [
+          "Des séances adaptées pour accompagner la femme enceinte ou la nouvelle maman dans sa pratique physique."
+        ],
+        "bullets": [
+          "Exercices sécurisés et validés scientifiquement",
+          "Focus sur le périnée et la sangle abdominale profonde",
+          "Soulagement des maux de dos liés à la grossesse"
+        ],
+        "benefits": [
+          "Récupération post-partum optimisée",
+          "Renforcement du plancher pelvien",
+          "Réduction des tensions dorsales",
+          "Gestion du souffle et relaxation",
+          "Maintien de la forme physique",
+          "Confiance en son corps"
+        ]
+      },
+      "method5": {
+        "title": "Senior Pilates / Mobilité",
+        "italicWord": "Mobilité",
+        "eyebrow": "LONGÉVITÉ · MOBILITÉ · ÉQUILIBRE",
+        "intensity": "ESSENTIEL",
+        "description": [
+          "Conçu pour les séniors ou toute personne souhaitant améliorer sa mobilité articulaire et son équilibre."
+        ],
+        "bullets": [
+          "Travail sur l'amplitude articulaire",
+          "Exercices d'équilibre et de prévention des chutes",
+          "Renforcement musculaire doux et fonctionnel"
+        ],
+        "benefits": [
+          "Autonomie renforcée",
+          "Articulations plus souples",
+          "Meilleur équilibre",
+          "Réduction des raideurs matinales",
+          "Amélioration de la vitalité",
+          "Lien social et bien-être"
+        ]
+      },
+      "reformer": {
+        "title": "Pilates Reformer Exclusif",
+        "eyebrow": "À VENIR · STUDIO PRIVÉ",
+        "description": "Bientôt, profitez de la puissance et de la précision du Reformer dans un cadre confidentiel et haut de gamme."
+      }
+    },
+    "tariffs": {
+      "investEyebrow": "INVESTISSEMENT",
+      "title": "Tarifs & <em className='signature-italic text-red-accent font-normal'>Formules</em>",
+      "singleSession": "Séance unique",
+      "pack10": "Forfait 10 séances",
+      "validity": "Forfaits valables 3 mois à compter de la première séance.",
+      "footerDisclaimer": "Toutes les séances incluent le déplacement et le matériel nécessaire.",
+      "inverted": {
+        "travel": "Déplacement inclus",
+        "equipment": "Matériel fourni",
+        "payment": "Paiement à la séance ou au forfait"
+      },
+      "items": {
+        "lagree": "Lagree Microformer",
+        "sculpt": "Sculpt & Lagree",
+        "foundation": "Pilates Foundation",
+        "pilatesSculpt": "Pilates Sculpt",
+        "stretch": "Stretch & Restore"
+      }
+    },
+    "destinations": {
+      "riviera": {
+        "season": "Mai — Octobre",
+        "title": "French Riviera",
+        "italicWord": "Riviera",
+        "description": "Intervention à votre domicile, dans votre villa ou sur votre yacht. Un accompagnement sur-mesure dans les lieux les plus prestigieux de la Côte d'Azur."
+      },
+      "stbarth": {
+        "season": "Novembre — Avril",
+        "title": "Saint-Barth",
+        "italicWord": "Barth",
+        "description": "Candice vous accompagne durant la saison hivernale pour vos séances privées dans le cadre exclusif de votre villa à Saint-Barthélemy."
+      }
+    },
+    "editorial": {
+      "quote": "« Le vrai luxe, c'est de prendre soin de soi <br /> <em className='signature-italic text-red-accent font-normal'>avec intention —</em> <br className='hidden sm:block' /> un corps fort, une posture affirmée, une présence qui se voit. »",
+      "mission": "« Ma mission est de vous offrir plus qu'un simple cours : une expérience transformative où chaque mouvement compte. »",
+      "author": "Candice"
+    },
+    "features": {
+      "items": "{count, plural, =0 {Aucun article} one {# article} other {# articles}}"
+    }
+  },
+  "about": {
+    "title": "À propos de nous",
+    "description": "Nous sommes passionnés par le Pilates."
+  },
+  "seo": {
+    "home": {
+      "title": "YourPilateCrush : Pilates & Lagree Privés Côte d'Azur & Saint-Barth",
+      "description": "Découvrez l'excellence du Pilates et du Lagree avec Candice. Séances privées sur-mesure à domicile, villa ou yacht sur la Côte d'Azur et à Saint-Barthélemy. Résultats visibles."
+    },
+    "about": {
+      "title": "À propos de YourPilateCrush - Coaching Privé Haut de Gamme",
+      "description": "Apprenez-en plus sur l'expertise de Candice en STOTT PILATES et Lagree. Un accompagnement personnalisé pour transformer votre corps et votre posture avec intention."
+    }
+  }
+}

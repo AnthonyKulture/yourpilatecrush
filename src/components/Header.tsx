@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { GlassEffect } from './ui/liquid-glass';
 import { 
   Sparkles, 
@@ -12,20 +12,23 @@ import {
   X,
   Dna
 } from 'lucide-react';
-
-const NAV_LINKS = [
-  { label: 'Pratiques', href: '#pratiques', icon: Sparkles },
-  { label: 'Tarifs', href: '#tarifs', icon: Gem },
-  { label: 'Destinations', href: '#destinations', icon: Palmtree },
-  { label: 'Contact', href: '#contact', icon: MessageCircle },
-];
+import LanguageSwitcher from './i18n/LanguageSwitcher';
+import { useTranslations } from 'next-intl';
 
 /**
  * Header Component
  * Ultra-modern Liquid Glass Floating Navigation.
  */
 export default function Header() {
+  const t = useTranslations('common.nav');
   const [isOpen, setIsOpen] = useState(false);
+  
+  const NAV_LINKS = [
+    { label: t('home'), href: '/', icon: Sparkles },
+    { label: t('about'), href: '/about', icon: Gem },
+    { label: t('blog'), href: '/blog', icon: Palmtree },
+    { label: 'Contact', href: '#contact', icon: MessageCircle },
+  ];
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
 
@@ -107,6 +110,9 @@ export default function Header() {
                 </Link>
               );
             })}
+            <div className={`ml-4 pl-4 border-l ${pastHero ? 'border-burgundy-deep/10' : 'border-white/10'}`}>
+              <LanguageSwitcher pastHero={pastHero} />
+            </div>
           </nav>
         </GlassEffect>
       </header>
@@ -199,6 +205,9 @@ export default function Header() {
                 </Link>
               );
             })}
+            <div className="mt-8 px-2">
+              <LanguageSwitcher variant="expanded" />
+            </div>
           </nav>
 
           {/* Footer */}
@@ -213,29 +222,8 @@ export default function Header() {
             <div className="h-[1px] w-12 bg-burgundy-deep/10" />
             <p className="text-[9px] font-sans uppercase tracking-[0.4em] text-burgundy-deep/40">Expert Pilates & Lagree</p>
             <div className="flex gap-10 text-[12px] font-sans font-medium text-red-accent">
-              <a 
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const p = ['33', '6', '51', '59', '02', '16'].join('');
-                  window.open(`https://wa.me/${p}`, '_blank');
-                }}
-                className="hover:opacity-70 transition-opacity"
-              >
-                WhatsApp
-              </a>
-              <a 
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const user = "yourpilatescrush";
-                  const domain = "gmail.com";
-                  window.location.href = `mailto:${user}@${domain}`;
-                }}
-                className="hover:opacity-70 transition-opacity"
-              >
-                Email
-              </a>
+              <a href="https://wa.me/33651590216" className="hover:opacity-70 transition-opacity">WhatsApp</a>
+              <a href="mailto:yourpilatescrush@gmail.com" className="hover:opacity-70 transition-opacity">Email</a>
             </div>
           </div>
         </div>

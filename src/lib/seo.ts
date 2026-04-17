@@ -10,6 +10,7 @@ interface BuildMetadataProps {
   image?: string;
   path?: string;
   noIndex?: boolean;
+  locale?: string;
 }
 
 /**
@@ -19,29 +20,32 @@ interface BuildMetadataProps {
 export function buildMetadata({
   title,
   description = "Séances privées de Pilates et Lagree à domicile, sur-mesure. Côte d'Azur et Saint-Barthélemy. Instructrice certifiée STOTT & Lagree.",
-  image = "/favicon.ico", // Par défaut, opengraph-image.tsx de Next remplacera ça si présent au root
+  image = "/favicon.ico", 
   path = "",
   noIndex = false,
+  locale = "fr",
 }: BuildMetadataProps = {}): Metadata {
-  const url = `${SITE_URL}${path}`;
+  const url = `${SITE_URL}/${locale}${path}`;
 
   return {
     title: {
       default: SITE_NAME,
       template: `%s | ${SITE_NAME}`,
     },
-    ...(title && { title }), // Remplace title complet si fourni, sinon garde default/template
+    ...(title && { title }), 
     description,
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical: url,
       languages: {
-        "fr": url,
+        "fr": `${SITE_URL}/fr${path}`,
+        "en": `${SITE_URL}/en${path}`,
+        "x-default": `${SITE_URL}/fr${path}`,
       },
     },
     openGraph: {
       type: "website",
-      locale: "fr_FR",
+      locale: locale === "fr" ? "fr_FR" : "en_US",
       url,
       title: title || SITE_NAME,
       description,
