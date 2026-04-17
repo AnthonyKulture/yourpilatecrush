@@ -5,20 +5,21 @@ import { BreadcrumbListSchema } from '@/components/seo/BreadcrumbListSchema';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const article = await getArticleBySlug(slug);
 
-  if (!article) return buildMetadata({ noIndex: true });
+  if (!article) return buildMetadata({ noIndex: true, locale });
 
   return buildMetadata({
     title: article.title,
     description: article.description,
     path: `/blog/${article.slug}`,
     image: article.coverImage,
+    locale,
   });
 }
 

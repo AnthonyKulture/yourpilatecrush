@@ -35,7 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildMetadata({
     title: t('title'),
     description: t('description'),
-    path: ``, // Or dynamic depending on route
+    path: ``, // Homepage
+    locale,
   });
 }
 

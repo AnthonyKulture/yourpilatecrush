@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://yourpilatecrush.studio";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.yourpilatecrush.studio";
 export const SITE_NAME = "Your Pilate Crush";
 export const TWITTER_HANDLE = "@yourpilatecrush"; // Remplacez par le handle réel
 
@@ -28,10 +28,15 @@ export function buildMetadata({
   // fr -> /path (sans préfixe)
   // en -> /en/path
   const getFullUrl = (l: string, p: string) => {
-    const cleanPath = p.startsWith("/") ? p : `/${p}`;
-    const normalizedPath = cleanPath === "/" ? "" : cleanPath;
+    const cleanPath = p.startsWith("/") ? p.slice(1) : p;
     const prefix = l === "en" ? "/en" : "";
-    return `${SITE_URL}${prefix}${normalizedPath || "/"}`;
+    
+    // Avoid trailing slash if path is empty
+    const finalPath = cleanPath ? `/${cleanPath}` : "";
+    const fullUrl = `${SITE_URL}${prefix}${finalPath}`;
+    
+    // Fallback to SITE_URL if everything else is empty (homepage)
+    return fullUrl || SITE_URL;
   };
 
   const url = getFullUrl(locale, path);

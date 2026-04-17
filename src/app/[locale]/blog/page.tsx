@@ -2,11 +2,15 @@ import { buildMetadata } from '@/lib/seo';
 import { getAllArticles } from '@/lib/articles';
 import Link from 'next/link';
 
-export const metadata = buildMetadata({
-  title: 'Blog | Le Journal Pilate & Lagree',
-  description: 'Découvrez nos articles sur les méthodes Pilates, Lagree, conseils postures et bien-être global.',
-  path: '/blog',
-});
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return buildMetadata({
+    title: 'Blog | Le Journal Pilate & Lagree',
+    description: 'Découvrez nos articles sur les méthodes Pilates, Lagree, conseils postures et bien-être global.',
+    path: '/blog',
+    locale,
+  });
+}
 
 export default async function BlogIndexPage() {
   const articles = await getAllArticles();
