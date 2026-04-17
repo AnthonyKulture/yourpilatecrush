@@ -213,8 +213,29 @@ export default function Header() {
             <div className="h-[1px] w-12 bg-burgundy-deep/10" />
             <p className="text-[9px] font-sans uppercase tracking-[0.4em] text-burgundy-deep/40">Expert Pilates & Lagree</p>
             <div className="flex gap-10 text-[12px] font-sans font-medium text-red-accent">
-              <a href="https://wa.me/33651590216" className="hover:opacity-70 transition-opacity">WhatsApp</a>
-              <a href="mailto:yourpilatescrush@gmail.com" className="hover:opacity-70 transition-opacity">Email</a>
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const p = ['33', '6', '51', '59', '02', '16'].join('');
+                  window.open(`https://wa.me/${p}`, '_blank');
+                }}
+                className="hover:opacity-70 transition-opacity"
+              >
+                WhatsApp
+              </a>
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const user = "yourpilatescrush";
+                  const domain = "gmail.com";
+                  window.location.href = `mailto:${user}@${domain}`;
+                }}
+                className="hover:opacity-70 transition-opacity"
+              >
+                Email
+              </a>
             </div>
           </div>
         </div>

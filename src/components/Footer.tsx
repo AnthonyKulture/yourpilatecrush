@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 /**
@@ -20,32 +22,51 @@ export default function Footer({ id }: { id?: string }) {
           <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
             {/* WhatsApp Pill */}
             <a 
-              href="https://wa.me/33651590216" 
-              className="flex items-center gap-4 bg-white/5 border border-cream/20 rounded-pill px-8 py-4 hover:bg-white/10 transition-colors group"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                const p = ['33', '6', '51', '59', '02', '16'].join('');
+                window.open(`https://wa.me/${p}`, '_blank');
+              }}
+              className="flex items-center gap-4 bg-white/5 border border-cream/20 rounded-pill px-8 py-4 hover:bg-white/10 transition-colors group cursor-pointer"
             >
               <span className="text-[10px] font-sans font-bold uppercase tracking-eyebrow text-gold-champagne">WhatsApp</span>
-              <span className="text-[14px] font-sans">+33 6 51 59 02 16</span>
+              <span className="text-[14px] font-sans">+33 6 51 59 02 <span>16</span></span>
             </a>
 
             {/* Email Pill */}
             <a 
-              href="mailto:yourpilatescrush@gmail.com" 
-              className="flex items-center gap-4 bg-white/5 border border-cream/20 rounded-pill px-8 py-4 hover:bg-white/10 transition-colors group"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                const user = "yourpilatescrush";
+                const domain = "gmail.com";
+                window.location.href = `mailto:${user}@${domain}`;
+              }}
+              className="flex items-center gap-4 bg-white/5 border border-cream/20 rounded-pill px-8 py-4 hover:bg-white/10 transition-colors group cursor-pointer"
             >
               <span className="text-[10px] font-sans font-bold uppercase tracking-eyebrow text-gold-champagne">Email</span>
-              <span className="text-[14px] font-sans">yourpilatescrush@gmail.com</span>
+              <span className="text-[14px] font-sans">yourpilatescrush<span>@</span>gmail.com</span>
             </a>
           </div>
         </div>
 
         {/* Bottom Line */}
-        <div className="w-full pt-16 border-t border-cream/10 flex flex-col sm:flex-row justify-between items-center gap-8 text-[11px] font-sans uppercase tracking-[0.2em] text-cream/40">
-          <div className="flex gap-8">
-            <a href="/mentions-legales" className="hover:text-gold-champagne transition-colors">Mentions Légales</a>
-            <p>© {currentYear} Your Pilate Crush</p>
+        <div className="w-full pt-16 border-t border-cream/10 flex flex-col items-center gap-8 text-[11px] font-sans uppercase tracking-[0.2em] text-cream/40">
+          <div className="flex flex-col sm:flex-row justify-between w-full items-center gap-4 sm:gap-8">
+            <div className="flex gap-8">
+              <a href="/mentions-legales" className="hover:text-gold-champagne transition-colors">Mentions Légales</a>
+              <p>© {currentYear} Your Pilate Crush</p>
+            </div>
+            <div className="text-center sm:text-right">
+              <p>Pilates & Lagree Privés — Côte d&apos;Azur & Saint-Barthélemy</p>
+            </div>
           </div>
-          <div className="text-center sm:text-right">
-            <p>Pilates & Lagree Privés — Côte d&apos;Azur & Saint-Barthélemy</p>
+          
+          <div className="pb-4 text-center">
+            <p className="normal-case tracking-normal text-[12px] opacity-75">
+              Made with ❤️ by <a href="https://www.kulturecom.fr" target="_blank" rel="noopener noreferrer" className="hover:text-gold-champagne transition-colors underline decoration-cream/20 underline-offset-4">Anthony PROFIT</a>
+            </p>
           </div>
         </div>
       </div>

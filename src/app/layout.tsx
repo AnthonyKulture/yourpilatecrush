@@ -1,3 +1,5 @@
+import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
@@ -18,16 +20,11 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Your Pilate Crush · Pilates & Lagree privés — Côte d'Azur & Saint-Barthélemy",
   description: "Séances privées de Pilates et Lagree à domicile, sur-mesure. Côte d'Azur (mai-octobre) et Saint-Barthélemy (novembre-avril). Instructrice certifiée STOTT & Lagree.",
-  openGraph: {
-    title: "Move with intention — Your Pilate Crush",
-    description: "Une pratique exclusive et sur-mesure, dispensée dans le cadre intimiste de votre villa ou résidence.",
-    locale: "fr_FR",
-    type: "website",
-  },
-};
+  path: "",
+});
 
 export default function RootLayout({
   children,
@@ -37,6 +34,11 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
       <body className="antialiased min-h-screen bg-cream text-burgundy-deep" suppressHydrationWarning>
+        <OrganizationSchema 
+          siteUrl={SITE_URL} 
+          siteName={SITE_NAME}
+          description="Votre expert Pilates et Lagree sur-mesure à domicile."
+        />
         <GlassFilter />
         <Header />
         {children}
