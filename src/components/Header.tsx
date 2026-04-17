@@ -23,11 +23,12 @@ export default function Header() {
   const t = useTranslations('common.nav');
   const [isOpen, setIsOpen] = useState(false);
   
+  // Liens de navigation Onepage — toutes des ancres (#)
   const NAV_LINKS = [
-    { label: t('home'), href: '/', icon: Sparkles },
-    { label: t('about'), href: '/about', icon: Gem },
-    { label: t('blog'), href: '/blog', icon: Palmtree },
-    { label: 'Contact', href: '#contact', icon: MessageCircle },
+    { label: t('pratiques'), href: '#pratiques', icon: Gem, isAnchor: true },
+    { label: t('tarifs'), href: '#tarifs', icon: Dna, isAnchor: true },
+    { label: t('destinations'), href: '#destinations', icon: Palmtree, isAnchor: true },
+    { label: t('contact'), href: '#contact', icon: MessageCircle, isAnchor: true },
   ];
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
@@ -92,12 +93,9 @@ export default function Header() {
             {/* Nav Items */}
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
-              return (
-                <Link 
-                  key={link.label} 
-                  href={link.href}
-                  className="group flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5"
-                >
+              const navClass = "group flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5";
+              const inner = (
+                <>
                   <div className="relative p-1.5">
                     <Icon 
                       className={`w-4 h-4 transition-colors duration-500 group-hover:text-red-accent ${pastHero ? 'text-burgundy-deep/70' : 'text-cream/80'}`} 
@@ -107,7 +105,12 @@ export default function Header() {
                   <span className={`text-[8px] font-sans font-medium uppercase tracking-[0.12em] transition-all duration-500 group-hover:text-red-accent ${pastHero ? 'text-burgundy-deep/50' : 'text-cream/50'}`}>
                     {link.label}
                   </span>
-                </Link>
+                </>
+              );
+              return link.isAnchor ? (
+                <a key={link.label} href={link.href} className={navClass}>{inner}</a>
+              ) : (
+                <Link key={link.label} href={link.href} className={navClass}>{inner}</Link>
               );
             })}
             <div className={`ml-4 pl-4 border-l ${pastHero ? 'border-burgundy-deep/10' : 'border-white/10'}`}>
@@ -179,20 +182,16 @@ export default function Header() {
           <nav className="flex flex-col gap-6">
             {NAV_LINKS.map((link, i) => {
               const Icon = link.icon;
-              return (
-                <Link 
-                  key={link.label} 
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="group flex items-center justify-between border-b border-burgundy-deep/10 pb-6"
-                  style={{
-                    transform: isOpen ? 'translateX(0)' : 'translateX(24px)',
-                    opacity: isOpen ? 1 : 0,
-                    transition: 'transform 600ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease',
-                    transitionDelay: `${120 + i * 70}ms`,
-                    willChange: 'transform, opacity',
-                  }}
-                >
+              const mobileClass = "group flex items-center justify-between border-b border-burgundy-deep/10 pb-6";
+              const mobileStyle = {
+                transform: isOpen ? 'translateX(0)' : 'translateX(24px)',
+                opacity: isOpen ? 1 : 0,
+                transition: 'transform 600ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease',
+                transitionDelay: `${120 + i * 70}ms`,
+                willChange: 'transform, opacity' as const,
+              };
+              const mobileInner = (
+                <>
                   <div className="flex items-center gap-5">
                     <div className="w-12 h-12 rounded-2xl bg-burgundy-deep/5 border border-burgundy-deep/8 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-burgundy-deep" strokeWidth={1.2} />
@@ -202,6 +201,27 @@ export default function Header() {
                     </span>
                   </div>
                   <span className="text-[10px] font-sans font-medium uppercase tracking-[0.3em] text-red-accent/40">→</span>
+                </>
+              );
+              return link.isAnchor ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={mobileClass}
+                  style={mobileStyle}
+                >
+                  {mobileInner}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={mobileClass}
+                  style={mobileStyle}
+                >
+                  {mobileInner}
                 </Link>
               );
             })}

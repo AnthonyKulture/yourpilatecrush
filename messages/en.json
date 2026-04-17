@@ -1,12 +1,13 @@
 {
   "common": {
     "nav": {
-      "home": "Home",
-      "about": "About",
-      "blog": "Blog"
+      "pratiques": "PRACTICES",
+      "tarifs": "PRICING",
+      "destinations": "DESTINATIONS",
+      "contact": "CONTACT"
     },
     "footer": {
-      "cta": "Let's begin <em className='signature-italic text-gold-champagne font-normal'>together</em>",
+      "cta": "Let's begin <em>together</em>",
       "pills": {
         "whatsapp": "WhatsApp",
         "email": "Email"
@@ -26,7 +27,7 @@
     "welcome": "Hello {name}!",
     "hero": {
       "eyebrow": "STOTT PILATES · LAGREE CERTIFICATION",
-      "title": "Move with <em className='signature-italic text-gold-champagne font-normal'>intention.</em>",
+      "title": "Move with <em>intention.</em>",
       "subtitle": "Pilates · Lagree",
       "seasons": {
         "summer": {
@@ -40,11 +41,11 @@
       }
     },
     "intro": {
-      "quote": "“True luxury is taking care of yourself with <em className='not-italic text-gold-champagne'>intention</em>… <br className='hidden sm:block' /> a strong body, a confident posture, a presence that is felt.”"
+      "quote": "“True luxury is taking care of yourself with <em>intention</em>… <br /> a strong body, a confident posture, a presence that is felt.”"
     },
     "methods": {
       "eyebrow": "OUR PRACTICES",
-      "sectionTitle": "Exceptional methods <br /> <em className='signature-italic text-red-accent font-normal'>at the service of your body</em>",
+      "sectionTitle": "Exceptional methods <em>at the service of your body</em>",
       "labels": {
         "intensity": "Intensity",
         "benefits": "Benefits",
@@ -172,7 +173,7 @@
     },
     "tariffs": {
       "investEyebrow": "INVESTMENT",
-      "title": "Pricing & <em className='signature-italic text-red-accent font-normal'>Packages</em>",
+      "title": "Pricing & <em>Packages</em>",
       "singleSession": "Single session",
       "pack10": "10-session package",
       "validity": "Packages valid for 3 months from the first session.",
@@ -205,7 +206,7 @@
       }
     },
     "editorial": {
-      "quote": "“True luxury is taking care of yourself <br /> <em className='signature-italic text-red-accent font-normal'>with intention —</em> <br className='hidden sm:block' /> a strong body, a confident posture, a presence that is felt.”",
+      "quote": "“True luxury is taking care of yourself <br /> <em>with intention —</em> <br /> a strong body, a confident posture, a presence that is felt.”",
       "mission": "“My mission is to offer you more than just a class: a transformative experience where every movement counts.”",
       "author": "Candice"
     },
