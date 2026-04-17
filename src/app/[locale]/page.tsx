@@ -10,6 +10,7 @@ import TariffGrid from "@/components/TariffGrid";
 import TariffCard from "@/components/TariffCard";
 import DestinationCard from "@/components/DestinationCard";
 import EditorialQuote from "@/components/EditorialQuote";
+import PhotoGallery from "@/components/PhotoGallery";
 import Footer from "@/components/Footer";
 
 export default async function Home() {
@@ -100,7 +101,13 @@ export default async function Home() {
         <ReformerCard />
       </MethodsSection>
 
-      {/* 04 - Tariffs Section */}
+      {/* 04 - Atmosphere Gallery (Lifestyle) */}
+      <PhotoGallery 
+        indices={[1, 2, 3, 4, 5, 6, 7]} 
+        showSchema={true}
+      />
+
+      {/* 05 - Tariffs Section */}
       <TariffGrid id="tarifs">
         <TariffCard 
           index="01"
@@ -140,7 +147,7 @@ export default async function Home() {
         />
       </TariffGrid>
 
-      {/* 05 - Destinations Section */}
+      {/* 06 - Destinations Section */}
       <section id="destinations" className="flex flex-col lg:flex-row w-full overflow-hidden border-t border-burgundy-deep/10">
         <DestinationCard 
           season={tDestinations.riviera.season}
@@ -158,10 +165,16 @@ export default async function Home() {
         />
       </section>
 
-      {/* 06 - Final Recommendation / Editorial Quote */}
+      {/* 07 - Studio Gallery (Details) */}
+      <PhotoGallery 
+        indices={[8, 9, 10, 11, 12, 13]} 
+        title="L'art du mouvement"
+      />
+
+      {/* 08 - Final Recommendation / Editorial Quote */}
       <EditorialQuote />
 
-      {/* 07 - Footer */}
+      {/* 09 - Footer */}
       <Footer id="contact" />
     </main>
   );
