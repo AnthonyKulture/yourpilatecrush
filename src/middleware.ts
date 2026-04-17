@@ -2,15 +2,6 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone();
-  
-  // SEO : Normalisation des URLs (lowercase) pour éviter du duplicate content
-  // Ex: /Blog -> /blog
-  if (url.pathname !== url.pathname.toLowerCase() && !url.pathname.startsWith('/api/') && !url.pathname.startsWith('/_next/')) {
-    url.pathname = url.pathname.toLowerCase();
-    return NextResponse.redirect(url, 308); // 308 = Permanent Redirect
-  }
-
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
   const isDev = process.env.NODE_ENV !== 'production';
   
