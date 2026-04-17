@@ -9,18 +9,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/mentions-legales', priority: 0.3, changeFrequency: 'monthly' as const },
   ];
 
+  const getFullUrl = (l: string, p: string) => {
+    const cleanPath = p.startsWith('/') ? p : `/${p}`;
+    const normalizedPath = cleanPath === '/' ? '' : cleanPath;
+    const prefix = l === 'en' ? '/en' : '';
+    return `${SITE_URL}${prefix}${normalizedPath || '/'}`;
+  };
+
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   for (const locale of locales) {
     for (const route of routes) {
       sitemapEntries.push({
-        url: `${SITE_URL}/${locale}${route.path}`,
+        url: getFullUrl(locale, route.path),
         lastModified: new Date(),
         changeFrequency: route.changeFrequency,
         priority: route.priority,
         alternates: {
           languages: Object.fromEntries(
-            locales.map((l) => [l, `${SITE_URL}/${l}${route.path}`])
+            locales.map((l) => [l, getFullUrl(l, route.path)])
           ),
         },
       });

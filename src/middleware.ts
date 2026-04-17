@@ -14,7 +14,20 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 308);
   }
 
-  // 2. Exécution du middleware i18n
+  // 2. Détection automatique de la langue
+  // On cible les chemins qui n'ont pas de préfixe (donc par défaut en FR avec localePrefix: 'as-needed')
+  const isDefaultLocalePath = !url.pathname.startsWith('/en/') && url.pathname !== '/en';
+  
+  if (isDefaultLocalePath && !request.cookies.has('NEXT_LOCALE')) {
+    const acceptLanguage = request.headers.get('accept-language');
+    // Si la langue préférée n'inclut pas le français, on redirige vers la version anglaise (/en/...)
+    if (acceptLanguage && !acceptLanguage.toLowerCase().includes('fr')) {
+      const newPathname = `/en${url.pathname === '/' ? '' : url.pathname}`;
+      return NextResponse.redirect(new URL(newPathname, request.url));
+    }
+  }
+
+  // 3. Exécution du middleware i18n
   return intlMiddleware(request);
 }
 

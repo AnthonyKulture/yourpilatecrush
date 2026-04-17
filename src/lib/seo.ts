@@ -15,7 +15,6 @@ interface BuildMetadataProps {
 
 /**
  * Fonction centrale de génération de metadata pour Next.js App Router (2024-2025)
- * Paramètres par défaut optimisés pour SEO, avec surcharge par page possible.
  */
 export function buildMetadata({
   title,
@@ -25,7 +24,17 @@ export function buildMetadata({
   noIndex = false,
   locale = "fr",
 }: BuildMetadataProps = {}): Metadata {
-  const url = `${SITE_URL}/${locale}${path}`;
+  // Gestion de l'URL canonique en fonction de la locale (as-needed)
+  // fr -> /path (sans préfixe)
+  // en -> /en/path
+  const getFullUrl = (l: string, p: string) => {
+    const cleanPath = p.startsWith("/") ? p : `/${p}`;
+    const normalizedPath = cleanPath === "/" ? "" : cleanPath;
+    const prefix = l === "en" ? "/en" : "";
+    return `${SITE_URL}${prefix}${normalizedPath || "/"}`;
+  };
+
+  const url = getFullUrl(locale, path);
 
   return {
     title: {
@@ -38,9 +47,9 @@ export function buildMetadata({
     alternates: {
       canonical: url,
       languages: {
-        "fr": `${SITE_URL}/fr${path}`,
-        "en": `${SITE_URL}/en${path}`,
-        "x-default": `${SITE_URL}/fr${path}`,
+        "fr": getFullUrl("fr", path),
+        "en": getFullUrl("en", path),
+        "x-default": getFullUrl("fr", path), // Le français est la langue par défaut
       },
     },
     openGraph: {

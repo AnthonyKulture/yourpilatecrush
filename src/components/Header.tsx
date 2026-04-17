@@ -65,9 +65,9 @@ export default function Header() {
   return (
     <>
       {/* --- DESKTOP FLOATING DOCK --- */}
-      <header className="fixed top-5 left-0 right-0 z-50 pointer-events-none hidden lg:flex justify-end pr-8">
+      <header className="fixed top-8 left-0 right-0 z-50 pointer-events-none hidden lg:flex justify-end pr-8">
         <GlassEffect 
-          className={`pointer-events-auto rounded-full transition-all duration-500 ${scrolled ? 'shadow-2xl' : 'shadow-lg'}`}
+          className="pointer-events-auto rounded-full transition-all duration-500 shadow-xl"
           style={{
             background: pastHero
               ? 'linear-gradient(135deg, rgba(247,238,229,0.75) 0%, rgba(247,238,229,0.55) 100%)'
@@ -93,7 +93,7 @@ export default function Header() {
             {/* Nav Items */}
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
-              const navClass = "group flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5";
+              const navClass = "group flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500";
               const inner = (
                 <>
                   <div className="relative p-1.5">
@@ -120,36 +120,42 @@ export default function Header() {
         </GlassEffect>
       </header>
 
-      {/* --- MOBILE FLOATING BURGER --- */}
-      <div className="fixed z-[60] lg:hidden" style={{ top: '1.5rem', right: '1.5rem' }}>
-        <GlassEffect 
-          onClick={() => setIsOpen(!isOpen)}
-          className={`rounded-full p-4 cursor-pointer transition-all duration-500 active:scale-90 ${isOpen ? 'bg-burgundy-deep' : ''}`}
-          style={{
-            background: isOpen 
-              ? 'rgba(74,22,19,0.9)'
-              : pastHero 
-                ? 'linear-gradient(135deg, rgba(247,238,229,0.75) 0%, rgba(247,238,229,0.55) 100%)'
-                : 'linear-gradient(135deg, rgba(74,22,19,0.30) 0%, rgba(120,30,25,0.18) 100%)',
-            border: isOpen 
-              ? '1px solid rgba(228,200,152,0.3)'
-              : pastHero 
-                ? '1px solid rgba(74,22,19,0.12)'
-                : '1px solid rgba(228,200,152,0.20)',
-          }}
-        >
-          {isOpen ? (
-            <X className="w-6 h-6 text-cream" />
-          ) : (
-            <Menu className={`w-6 h-6 transition-colors ${pastHero ? 'text-burgundy-deep' : 'text-cream'}`} />
-          )}
-        </GlassEffect>
-      </div>
+      {/* --- MOBILE HEADER TOP BAR --- */}
+      <div 
+        className="fixed top-0 left-0 right-0 z-[60] lg:hidden flex justify-between items-center px-6 pointer-events-none"
+        style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
+      >
+        {/* Brand Watermark on Mobile */}
+        <div className="pointer-events-auto">
+          <Link href="/" className="w-10 h-10 rounded-full bg-burgundy-deep flex items-center justify-center text-gold-champagne font-display italic text-xl shadow-lg border border-gold-champagne/20">
+            C
+          </Link>
+        </div>
 
-      {/* Brand Watermark on Mobile */}
-      <div className="fixed top-6 left-6 z-50 lg:hidden pointer-events-none">
-        <div className="w-10 h-10 rounded-full bg-burgundy-deep flex items-center justify-center text-gold-champagne font-display italic text-xl shadow-lg border border-gold-champagne/20">
-          C
+        {/* Mobile Burger */}
+        <div className="pointer-events-auto">
+          <GlassEffect 
+            onClick={() => setIsOpen(!isOpen)}
+            className={`rounded-full p-3.5 cursor-pointer transition-all duration-500 active:scale-90 ${isOpen ? 'bg-burgundy-deep' : ''}`}
+            style={{
+              background: isOpen 
+                ? 'rgba(74,22,19,0.9)'
+                : pastHero 
+                  ? 'linear-gradient(135deg, rgba(247,238,229,0.75) 0%, rgba(247,238,229,0.55) 100%)'
+                  : 'linear-gradient(135deg, rgba(74,22,19,0.30) 0%, rgba(120,30,25,0.18) 100%)',
+              border: isOpen 
+                ? '1px solid rgba(228,200,152,0.3)'
+                : pastHero 
+                  ? '1px solid rgba(74,22,19,0.12)'
+                  : '1px solid rgba(228,200,152,0.20)',
+            }}
+          >
+            {isOpen ? (
+              <X className="w-5 h-5 text-cream" />
+            ) : (
+              <Menu className={`w-5 h-5 transition-colors ${pastHero ? 'text-burgundy-deep' : 'text-cream'}`} />
+            )}
+          </GlassEffect>
         </div>
       </div>
 

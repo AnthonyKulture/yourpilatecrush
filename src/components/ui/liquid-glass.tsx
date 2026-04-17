@@ -28,7 +28,7 @@ export const GlassEffect: React.FC<GlassEffectProps> = ({
   const content = (
     <div
       onClick={onClick}
-      className={`relative overflow-hidden transition-all duration-700 ${className}`}
+      className={`relative transition-all duration-700 ${className}`}
       style={{
         // Core glassmorphism
         backdropFilter: "blur(16px) saturate(180%)",
@@ -45,7 +45,7 @@ export const GlassEffect: React.FC<GlassEffectProps> = ({
     >
       {/* Subtle inner glow */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none rounded-[inherit] overflow-hidden"
         style={{
           background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%)",
         }}
