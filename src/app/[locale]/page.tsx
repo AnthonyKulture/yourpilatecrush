@@ -101,13 +101,7 @@ export default async function Home() {
         <ReformerCard />
       </MethodsSection>
 
-      {/* 04 - Atmosphere Gallery (Lifestyle) */}
-      <PhotoGallery 
-        indices={[1, 2, 3, 4, 5, 6, 7]} 
-        showSchema={true}
-      />
-
-      {/* 05 - Tariffs Section */}
+      {/* 04 - Tariffs Section */}
       <TariffGrid id="tarifs">
         <TariffCard 
           index="01"
@@ -147,7 +141,7 @@ export default async function Home() {
         />
       </TariffGrid>
 
-      {/* 06 - Destinations Section */}
+      {/* 05 - Destinations Section */}
       <section id="destinations" className="flex flex-col lg:flex-row w-full overflow-hidden border-t border-burgundy-deep/10">
         <DestinationCard 
           season={tDestinations.riviera.season}
@@ -165,16 +159,13 @@ export default async function Home() {
         />
       </section>
 
-      {/* 07 - Studio Gallery (Details) */}
-      <PhotoGallery 
-        indices={[8, 9, 10, 11, 12, 13]} 
-        title="L'art du mouvement"
-      />
+      {/* 06 - Atmosphere Gallery (Unified) */}
+      <PhotoGallery />
 
-      {/* 08 - Final Recommendation / Editorial Quote */}
+      {/* 07 - Final Recommendation / Editorial Quote */}
       <EditorialQuote />
 
-      {/* 09 - Footer */}
+      {/* 08 - Footer */}
       <Footer id="contact" />
     </main>
   );
