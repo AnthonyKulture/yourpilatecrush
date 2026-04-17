@@ -27,7 +27,7 @@ export default function PhotoGallery({ indices, title, showSchema = false }: Gal
     else if (index === 2) className = 'md:col-span-1 md:row-span-2';
     
     return {
-      src: `/images/gallery/Yourpilatecrush-${idx}.webp`,
+      src: `/images/gallery/yourpilatecrush-${idx}.webp`,
       alt: t(`images.alt${idx}`),
       className
     };

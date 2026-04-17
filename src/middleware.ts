@@ -38,8 +38,10 @@ export const config = {
      * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
+     * - images (public images)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     * - .webp, .jpg, .png (common image extensions)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+    '/((?!api|_next/static|_next/image|images|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:webp|jpg|png|gif|svg)$).*)',
   ],
 };

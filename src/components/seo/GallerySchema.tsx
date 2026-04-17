@@ -13,7 +13,7 @@ export default function GallerySchema() {
 
   const images = Array.from({ length: 13 }, (_, i) => ({
     "@type": "ImageObject",
-    "url": `/images/gallery/Yourpilatecrush-${i + 1}.webp`,
+    "url": `/images/gallery/yourpilatecrush-${i + 1}.webp`,
     "caption": t(`images.alt${i + 1}`)
   }));
 
