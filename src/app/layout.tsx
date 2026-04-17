@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import { GlassFilter } from "@/components/ui/liquid-glass";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -17,10 +19,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Candice Pilates · Pilates & Lagree privés — Côte d'Azur & Saint-Barthélemy",
+  title: "Your Pilate Crush · Pilates & Lagree privés — Côte d'Azur & Saint-Barthélemy",
   description: "Séances privées de Pilates et Lagree à domicile, sur-mesure. Côte d'Azur (mai-octobre) et Saint-Barthélemy (novembre-avril). Instructrice certifiée STOTT & Lagree.",
   openGraph: {
-    title: "Move with intention — Candice Pilates",
+    title: "Move with intention — Your Pilate Crush",
     description: "Une pratique exclusive et sur-mesure, dispensée dans le cadre intimiste de votre villa ou résidence.",
     locale: "fr_FR",
     type: "website",
@@ -33,8 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
-      <body className="antialiased min-h-screen bg-cream text-burgundy-deep">
+    <html lang="fr" className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="antialiased min-h-screen bg-cream text-burgundy-deep" suppressHydrationWarning>
+        <GlassFilter />
+        <Header />
         {children}
       </body>
     </html>

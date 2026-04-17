@@ -4,11 +4,11 @@ import React from 'react';
  * Footer Component
  * Final contact section with WhatsApp/Email pills.
  */
-export default function Footer() {
+export default function Footer({ id }: { id?: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-burgundy-deep text-cream py-20 px-gutter-mobile sm:px-gutter-desktop">
+    <footer id={id} className="bg-burgundy-deep text-cream py-20 px-gutter-mobile sm:px-gutter-desktop">
       <div className="max-w-[1180px] mx-auto flex flex-col items-center gap-16">
         
         {/* Contact CTA */}
@@ -42,7 +42,7 @@ export default function Footer() {
         <div className="w-full pt-16 border-t border-cream/10 flex flex-col sm:flex-row justify-between items-center gap-8 text-[11px] font-sans uppercase tracking-[0.2em] text-cream/40">
           <div className="flex gap-8">
             <a href="/mentions-legales" className="hover:text-gold-champagne transition-colors">Mentions Légales</a>
-            <p>© {currentYear} Candice Pilates</p>
+            <p>© {currentYear} Your Pilate Crush</p>
           </div>
           <div className="text-center sm:text-right">
             <p>Pilates & Lagree Privés — Côte d&apos;Azur & Saint-Barthélemy</p>

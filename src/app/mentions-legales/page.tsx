@@ -17,7 +17,7 @@ export default function LegalMentions() {
           <div className="space-y-4">
             <h2 className="text-xl font-display text-burgundy-deep">Éditeur du site</h2>
             <p>
-              Le site <strong>Candice Pilates</strong> est édité par Candice Pilates. <br />
+              Le site <strong>Your Pilate Crush</strong> est édité par Your Pilate Crush. <br />
               Email : yourpilatescrush@gmail.com <br />
               Téléphone : +33 6 51 59 02 16
             </p>

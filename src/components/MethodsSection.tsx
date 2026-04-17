@@ -1,6 +1,7 @@
 import React from 'react';
 
 interface MethodsSectionProps {
+  id?: string;
   children: React.ReactNode;
 }
 
@@ -8,9 +9,9 @@ interface MethodsSectionProps {
  * MethodsSection Component
  * Specialized container for the practices display.
  */
-export default function MethodsSection({ children }: MethodsSectionProps) {
+export default function MethodsSection({ id, children }: MethodsSectionProps) {
   return (
-    <section className="bg-cream py-24 sm:py-32 px-gutter-mobile sm:px-gutter-desktop">
+    <section id={id} className="bg-cream py-24 sm:py-32 px-gutter-mobile sm:px-gutter-desktop">
       <div className="max-w-[1180px] mx-auto space-y-24">
         
         {/* Section Header */}

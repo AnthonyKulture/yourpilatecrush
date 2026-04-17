@@ -25,7 +25,7 @@ export default function Home() {
       <IntroBand />
 
       {/* 03 - Methods Section */}
-      <MethodsSection>
+      <MethodsSection id="pratiques">
         {/* Method 01 */}
         <MethodCard 
           number="01"
@@ -160,7 +160,7 @@ export default function Home() {
       </MethodsSection>
 
       {/* 04 - Tariffs Section */}
-      <TariffGrid>
+      <TariffGrid id="tarifs">
         <TariffCard 
           index="01"
           title="Lagree Microformer"
@@ -200,7 +200,7 @@ export default function Home() {
       </TariffGrid>
 
       {/* 05 - Destinations Section */}
-      <section className="flex flex-col lg:flex-row w-full overflow-hidden border-t border-burgundy-deep/10">
+      <section id="destinations" className="flex flex-col lg:flex-row w-full overflow-hidden border-t border-burgundy-deep/10">
         <DestinationCard 
           season="Mai — Octobre"
           title="French Riviera"
@@ -221,7 +221,7 @@ export default function Home() {
       <EditorialQuote />
 
       {/* 07 - Footer */}
-      <Footer />
+      <Footer id="contact" />
     </main>
   );
 }

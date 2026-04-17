@@ -45,6 +45,11 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
+
+  @keyframes moveBackground {
+    from { background-position: 0% 0%; }
+    to { background-position: 0% -1000%; }
+  }
 }
 
 :root {

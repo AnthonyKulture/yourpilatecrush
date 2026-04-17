@@ -1,0 +1,224 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { GlassEffect } from './ui/liquid-glass';
+import { 
+  Sparkles, 
+  Gem, 
+  Palmtree, 
+  MessageCircle, 
+  Menu, 
+  X,
+  Dna
+} from 'lucide-react';
+
+const NAV_LINKS = [
+  { label: 'Pratiques', href: '#pratiques', icon: Sparkles },
+  { label: 'Tarifs', href: '#tarifs', icon: Gem },
+  { label: 'Destinations', href: '#destinations', icon: Palmtree },
+  { label: 'Contact', href: '#contact', icon: MessageCircle },
+];
+
+/**
+ * Header Component
+ * Ultra-modern Liquid Glass Floating Navigation.
+ */
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      setPastHero(y > window.innerHeight * 0.75);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      // Save scroll position to restore on close
+      const scrollY = window.scrollY;
+      document.body.style.overflow = 'hidden';
+      document.body.style.top = `-${scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.top = '';
+      if (scrollY) window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.top = '';
+    };
+  }, [isOpen]);
+
+  return (
+    <>
+      {/* --- DESKTOP FLOATING DOCK --- */}
+      <header className="fixed top-5 left-0 right-0 z-50 pointer-events-none hidden md:flex justify-end pr-8">
+        <GlassEffect 
+          className={`pointer-events-auto rounded-full transition-all duration-500 ${scrolled ? 'shadow-2xl' : 'shadow-lg'}`}
+          style={{
+            background: pastHero
+              ? 'linear-gradient(135deg, rgba(247,238,229,0.75) 0%, rgba(247,238,229,0.55) 100%)'
+              : 'linear-gradient(135deg, rgba(74,22,19,0.30) 0%, rgba(120,30,25,0.18) 100%)',
+            border: pastHero
+              ? '1px solid rgba(74, 22, 19, 0.10)'
+              : '1px solid rgba(228,200,152,0.20)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          }}
+        >
+          <nav className="flex items-center gap-1 px-5 py-2.5">
+            {/* Brand Logo inside Dock */}
+            <Link href="/" className={`flex items-center gap-3 pr-6 mr-4 border-r group ${pastHero ? 'border-burgundy-deep/15' : 'border-white/20'}`}>
+                <div className="w-8 h-8 rounded-full bg-burgundy-deep flex items-center justify-center text-gold-champagne font-display italic text-lg flex-shrink-0">
+                  C
+                </div>
+                <span className={`font-display tracking-[0.18em] text-[11px] font-semibold whitespace-nowrap transition-colors duration-500 ${pastHero ? 'text-burgundy-deep' : 'text-cream'}`}>
+                  YOUR PILATE CRUSH
+                </span>
+            </Link>
+
+            {/* Nav Items */}
+            {NAV_LINKS.map((link) => {
+              const Icon = link.icon;
+              return (
+                <Link 
+                  key={link.label} 
+                  href={link.href}
+                  className="group flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5"
+                >
+                  <div className="relative p-1.5">
+                    <Icon 
+                      className={`w-4 h-4 transition-colors duration-500 group-hover:text-red-accent ${pastHero ? 'text-burgundy-deep/70' : 'text-cream/80'}`} 
+                      strokeWidth={1.5} 
+                    />
+                  </div>
+                  <span className={`text-[8px] font-sans font-medium uppercase tracking-[0.12em] transition-all duration-500 group-hover:text-red-accent ${pastHero ? 'text-burgundy-deep/50' : 'text-cream/50'}`}>
+                    {link.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+        </GlassEffect>
+      </header>
+
+      {/* --- MOBILE FLOATING BURGER --- */}
+      <div className="fixed z-[60] md:hidden" style={{ top: '1.5rem', right: '1.5rem' }}>
+        <GlassEffect 
+          onClick={() => setIsOpen(!isOpen)}
+          className={`rounded-full p-4 cursor-pointer transition-all duration-500 active:scale-90 ${isOpen ? 'bg-burgundy-deep' : ''}`}
+          style={{
+            background: isOpen 
+              ? 'rgba(74,22,19,0.9)'
+              : pastHero 
+                ? 'linear-gradient(135deg, rgba(247,238,229,0.75) 0%, rgba(247,238,229,0.55) 100%)'
+                : 'linear-gradient(135deg, rgba(74,22,19,0.30) 0%, rgba(120,30,25,0.18) 100%)',
+            border: isOpen 
+              ? '1px solid rgba(228,200,152,0.3)'
+              : pastHero 
+                ? '1px solid rgba(74,22,19,0.12)'
+                : '1px solid rgba(228,200,152,0.20)',
+          }}
+        >
+          {isOpen ? (
+            <X className="w-6 h-6 text-cream" />
+          ) : (
+            <Menu className={`w-6 h-6 transition-colors ${pastHero ? 'text-burgundy-deep' : 'text-cream'}`} />
+          )}
+        </GlassEffect>
+      </div>
+
+      {/* Brand Watermark on Mobile */}
+      <div className="fixed top-6 left-6 z-50 md:hidden pointer-events-none">
+        <div className="w-10 h-10 rounded-full bg-burgundy-deep flex items-center justify-center text-gold-champagne font-display italic text-xl shadow-lg border border-gold-champagne/20">
+          C
+        </div>
+      </div>
+
+      {/* --- MOBILE LIQUID GLASS MENU --- */}
+      <div 
+        className="fixed inset-0 z-40 md:hidden"
+        style={{
+          // GPU-composited transform animation — no layout triggers
+          transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+          opacity: isOpen ? 1 : 0,
+          transition: 'transform 550ms cubic-bezier(0.19,1,0.22,1), opacity 400ms ease',
+          pointerEvents: isOpen ? 'auto' : 'none',
+          willChange: 'transform, opacity',
+        }}
+      >
+        {/* Glass Background — no SVG filter on mobile for performance */}
+        <div 
+          className="absolute inset-0 bg-cream/98"
+          style={{ 
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            transform: 'translateZ(0)', // force GPU layer
+          }} 
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(247,238,229,0.0) 60%)' }} />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-between h-full w-full px-10 py-28">
+          {/* Nav links */}
+          <nav className="flex flex-col gap-6">
+            {NAV_LINKS.map((link, i) => {
+              const Icon = link.icon;
+              return (
+                <Link 
+                  key={link.label} 
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="group flex items-center justify-between border-b border-burgundy-deep/10 pb-6"
+                  style={{
+                    transform: isOpen ? 'translateX(0)' : 'translateX(24px)',
+                    opacity: isOpen ? 1 : 0,
+                    transition: 'transform 600ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease',
+                    transitionDelay: `${120 + i * 70}ms`,
+                    willChange: 'transform, opacity',
+                  }}
+                >
+                  <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 rounded-2xl bg-burgundy-deep/5 border border-burgundy-deep/8 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-burgundy-deep" strokeWidth={1.2} />
+                    </div>
+                    <span className="text-[38px] font-display italic text-burgundy-deep leading-none">
+                      {link.label}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-sans font-medium uppercase tracking-[0.3em] text-red-accent/40">→</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Footer */}
+          <div 
+            className="flex flex-col gap-6"
+            style={{
+              opacity: isOpen ? 1 : 0,
+              transition: 'opacity 600ms ease',
+              transitionDelay: '450ms',
+            }}
+          >
+            <div className="h-[1px] w-12 bg-burgundy-deep/10" />
+            <p className="text-[9px] font-sans uppercase tracking-[0.4em] text-burgundy-deep/40">Expert Pilates & Lagree</p>
+            <div className="flex gap-10 text-[12px] font-sans font-medium text-red-accent">
+              <a href="https://wa.me/33651590216" className="hover:opacity-70 transition-opacity">WhatsApp</a>
+              <a href="mailto:yourpilatescrush@gmail.com" className="hover:opacity-70 transition-opacity">Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

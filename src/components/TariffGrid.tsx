@@ -1,6 +1,7 @@
 import React from 'react';
 
 interface TariffGridProps {
+  id?: string;
   children: React.ReactNode;
 }
 
@@ -8,9 +9,9 @@ interface TariffGridProps {
  * TariffGrid Component
  * Implements the responsive grid layout for pricing sections.
  */
-export default function TariffGrid({ children }: TariffGridProps) {
+export default function TariffGrid({ id, children }: TariffGridProps) {
   return (
-    <section className="bg-white py-24 sm:py-32 px-gutter-mobile sm:px-gutter-desktop border-t border-burgundy-deep/5">
+    <section id={id} className="bg-white py-24 sm:py-32 px-gutter-mobile sm:px-gutter-desktop border-t border-burgundy-deep/5">
       <div className="max-w-[1180px] mx-auto space-y-16">
         
         {/* Section Header */}
