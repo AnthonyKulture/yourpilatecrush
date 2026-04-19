@@ -210,25 +210,6 @@
       "mission": "« Ma mission est de vous offrir plus qu'un simple cours : une expérience transformative où chaque mouvement compte. »",
       "author": "Candice"
     },
-    "gallery": {
-      "eyebrow": "GALERIE",
-      "title": "L'univers <em>Your Pilate Crush</em>",
-      "images": {
-        "alt1": "Détail du Microformer dans une villa de luxe",
-        "alt2": "Séance de Pilates matinale face à la mer",
-        "alt3": "Posture et alignement : l'essence du mouvement",
-        "alt4": "Accessoires Pilates haut de gamme",
-        "alt5": "Ambiance sereine et lumineuse du studio",
-        "alt6": "Détails techniques et précision du mouvement",
-        "alt7": "Focus sur le travail musculaire profond",
-        "alt8": "Espace de pratique minimaliste et épuré",
-        "alt9": "Fluidité et harmonie du mouvement Pilates",
-        "alt10": "Accompagnement personnalisé de Candice",
-        "alt11": "Détails de l'équipement Lagree exclusif",
-        "alt12": "Harmonie corps-esprit en bord de mer",
-        "alt13": "L'excellence du coaching privé à Saint-Barth"
-      }
-    },
     "features": {
       "items": "{count, plural, =0 {Aucun article} one {# article} other {# articles}}"
     }

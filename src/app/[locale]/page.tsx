@@ -10,7 +10,6 @@ import TariffGrid from "@/components/TariffGrid";
 import TariffCard from "@/components/TariffCard";
 import DestinationCard from "@/components/DestinationCard";
 import EditorialQuote from "@/components/EditorialQuote";
-import PhotoGallery from "@/components/PhotoGallery";
 import Footer from "@/components/Footer";
 
 export default async function Home() {
@@ -159,11 +158,7 @@ export default async function Home() {
         />
       </section>
 
-      {/* 06 - Atmosphere Gallery (Unified) */}
-      <Divider className="my-32" />
-      <PhotoGallery />
-
-      {/* 07 - Final Recommendation / Editorial Quote */}
+      {/* 06 - Final Recommendation / Editorial Quote */}
       <EditorialQuote />
 
       {/* 08 - Footer */}

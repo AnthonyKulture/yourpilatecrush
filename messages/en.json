@@ -210,25 +210,6 @@
       "mission": "“My mission is to offer you more than just a class: a transformative experience where every movement counts.”",
       "author": "Candice"
     },
-    "gallery": {
-      "eyebrow": "GALLERY",
-      "title": "The <em>Your Pilate Crush</em> universe",
-      "images": {
-        "alt1": "Microformer detail in a luxury villa",
-        "alt2": "Morning Pilates session facing the sea",
-        "alt3": "Posture and alignment: the essence of movement",
-        "alt4": "High-end Pilates accessories",
-        "alt5": "Serene and luminous studio atmosphere",
-        "alt6": "Technical details and movement precision",
-        "alt7": "Focus on deep muscle work",
-        "alt8": "Minimalist and clean practice space",
-        "alt9": "Fluidity and harmony of Pilates movement",
-        "alt10": "Personalized guidance by Candice",
-        "alt11": "Exclusive Lagree equipment details",
-        "alt12": "Body-mind harmony by the sea",
-        "alt13": "Excellence of private coaching in St-Barth"
-      }
-    },
     "features": {
       "items": "{count, plural, =0 {No items} one {# item} other {# items}}"
     }
