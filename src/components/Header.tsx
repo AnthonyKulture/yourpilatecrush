@@ -127,6 +127,8 @@ export default function Header() {
           paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))',
           transform: 'translateZ(0)',
           WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
         }}
       >
         {/* Brand Watermark on Mobile */}
