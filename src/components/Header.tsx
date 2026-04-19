@@ -122,17 +122,11 @@ export default function Header() {
 
       {/* --- MOBILE HEADER TOP BAR --- */}
       <div
-        className="fixed top-0 left-0 right-0 z-[60] lg:hidden flex justify-between items-center px-6 pointer-events-none transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-[60] lg:hidden flex justify-between items-center px-6 pointer-events-none"
         style={{
           paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))',
-          paddingBottom: '1rem',
-          background: scrolled
-            ? pastHero
-              ? 'linear-gradient(to bottom, rgba(247,238,229,0.92) 0%, transparent 100%)'
-              : 'linear-gradient(to bottom, rgba(20,8,6,0.45) 0%, transparent 100%)'
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
         }}
       >
         {/* Brand Watermark on Mobile */}
