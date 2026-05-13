@@ -1,0 +1,35 @@
+# Your Pilate Crush — llms.txt
+
+## About
+Your Pilate Crush is a luxury private Pilates & Lagree coaching service by Candice, a certified STOTT Pilates and Lagree Fitness instructor. Sessions are delivered at the client's home, villa, or yacht — no studio. Equipment (including the Lagree Microformer machine) is transported and set up at the client's location.
+
+## Instructor
+- Name: Candice
+- Certifications: STOTT PILATES Certified Instructor, Lagree Fitness Certified Instructor
+- Languages: French, English
+
+## Services & Pricing
+- Lagree Microformer: 190 € / session · 1 300 € / 10-session pack
+- Sculpt & Lagree (55-min signature session): 190 € / session · 1 300 € / 10-session pack
+- Pilates Sculpt & Flow: 160 € / session · 1 200 € / 10-session pack
+- Pilates Foundation: 150 € / session · 1 100 € / 10-session pack
+- Stretch & Mobilité: 150 € / session · 1 100 € / 10-session pack
+- All packs valid 3 months from first session. Travel and equipment included.
+
+## Service Areas
+- May – October: Côte d'Azur (Monaco, Nice, Cannes, Saint-Tropez and surrounding areas)
+- November – April: Saint-Barthélemy (Gustavia, Saint-Jean, Flamands, Lorient)
+
+## Contact
+- WhatsApp: +33 6 51 59 02 16
+- Email: yourpilatescrush@gmail.com
+- Website: https://www.yourpilatecrush.studio
+
+## Allow
+/
+/blog/
+/a-propos
+
+## Disallow
+/design-test
+/mentions-legales

@@ -226,6 +226,10 @@
     "about": {
       "title": "About YourPilateCrush - High-End Private Coaching Expertise",
       "description": "Discover Candice's expertise in STOTT PILATES and Lagree. Personalized guidance to transform your body and posture with intention in exclusive locations."
+    },
+    "blog": {
+      "title": "Pilates & Lagree Blog | Your Pilate Crush",
+      "description": "Expert Pilates & Lagree advice from Candice, certified STOTT private instructor on the French Riviera and in Saint-Barthélemy."
     }
   }
 }

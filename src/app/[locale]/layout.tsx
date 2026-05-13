@@ -1,5 +1,7 @@
 import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
+import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
+import { PersonSchema } from "@/components/seo/PersonSchema";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "../globals.css"; // Fixed path
@@ -62,11 +64,13 @@ export default async function RootLayout({
     <html lang={locale} className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
       <body className="antialiased min-h-screen bg-cream text-burgundy-deep" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <OrganizationSchema 
-            siteUrl={SITE_URL} 
+          <OrganizationSchema
+            siteUrl={SITE_URL}
             siteName={SITE_NAME}
             description={t('description')}
           />
+          <LocalBusinessSchema siteUrl={SITE_URL} />
+          <PersonSchema siteUrl={SITE_URL} />
           <GlassFilter />
           <Header />
           {children}

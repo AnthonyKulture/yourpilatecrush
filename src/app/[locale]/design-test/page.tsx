@@ -1,10 +1,10 @@
 import React from 'react';
+import type { Metadata } from 'next';
 
-/**
- * Design Verification Page
- * This page serves to verify all design tokens, signatures, 
- * and utilities imported from the design brief.
- */
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
+
 export default function DesignTestPage() {
   return (
     <main className="min-h-screen p-8 sm:p-24 space-y-24 bg-cream text-burgundy-deep max-w-[1180px] mx-auto">

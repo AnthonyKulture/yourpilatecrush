@@ -226,6 +226,10 @@
     "about": {
       "title": "À propos de YourPilateCrush - Coaching Privé Haut de Gamme",
       "description": "Apprenez-en plus sur l'expertise de Candice en STOTT PILATES et Lagree. Un accompagnement personnalisé pour transformer votre corps et votre posture avec intention."
+    },
+    "blog": {
+      "title": "Blog Pilates & Lagree | Your Pilate Crush",
+      "description": "Conseils d'experte Pilates & Lagree par Candice, instructrice privée certifiée STOTT sur la Côte d'Azur et à Saint-Barthélemy."
     }
   }
 }

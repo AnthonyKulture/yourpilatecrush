@@ -19,7 +19,7 @@ interface BuildMetadataProps {
 export function buildMetadata({
   title,
   description = "Séances privées de Pilates et Lagree à domicile, sur-mesure. Côte d'Azur et Saint-Barthélemy. Instructrice certifiée STOTT & Lagree.",
-  image = "/favicon.ico", 
+  image,
   path = "",
   noIndex = false,
   locale = "fr",
@@ -79,7 +79,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title: title || SITE_NAME,
       description,
-      images: [image],
+      ...(image && { images: [image] }),
       creator: TWITTER_HANDLE,
     },
     robots: {

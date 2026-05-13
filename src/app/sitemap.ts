@@ -1,38 +1,48 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/seo';
+import { getAllArticles } from '@/lib/articles';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourpilatecrush.studio';
-const locales = ['fr', 'en'];
+const locales = ['fr', 'en'] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
-    { path: '/mentions-legales', priority: 0.3, changeFrequency: 'monthly' as const },
+const getFullUrl = (locale: string, path: string) => {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  const normalizedPath = cleanPath === '/' ? '' : cleanPath;
+  const prefix = locale === 'en' ? '/en' : '';
+  return `${SITE_URL}${prefix}${normalizedPath || '/'}`;
+};
+
+const buildAlternates = (path: string) => ({
+  languages: {
+    fr: getFullUrl('fr', path),
+    en: getFullUrl('en', path),
+    'x-default': getFullUrl('fr', path),
+  },
+});
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getAllArticles();
+
+  const staticRoutes = [
+    { path: '',                  lastModified: new Date('2025-05-01') },
+    { path: '/blog',             lastModified: new Date('2025-05-01') },
+    { path: '/mentions-legales', lastModified: new Date('2025-01-01') },
   ];
 
-  const getFullUrl = (l: string, p: string) => {
-    const cleanPath = p.startsWith('/') ? p : `/${p}`;
-    const normalizedPath = cleanPath === '/' ? '' : cleanPath;
-    const prefix = l === 'en' ? '/en' : '';
-    return `${SITE_URL}${prefix}${normalizedPath || '/'}`;
-  };
+  const staticEntries: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    staticRoutes.map((route) => ({
+      url: getFullUrl(locale, route.path),
+      lastModified: route.lastModified,
+      alternates: buildAlternates(route.path),
+    }))
+  );
 
-  const sitemapEntries: MetadataRoute.Sitemap = [];
+  const articleEntries: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    articles.map((article) => ({
+      url: getFullUrl(locale, `/blog/${article.slug}`),
+      lastModified: new Date(article.publishedAt),
+      alternates: buildAlternates(`/blog/${article.slug}`),
+    }))
+  );
 
-  for (const locale of locales) {
-    for (const route of routes) {
-      sitemapEntries.push({
-        url: getFullUrl(locale, route.path),
-        lastModified: new Date(),
-        changeFrequency: route.changeFrequency,
-        priority: route.priority,
-        alternates: {
-          languages: Object.fromEntries(
-            locales.map((l) => [l, getFullUrl(l, route.path)])
-          ),
-        },
-      });
-    }
-  }
-
-  return sitemapEntries;
+  return [...staticEntries, ...articleEntries];
 }

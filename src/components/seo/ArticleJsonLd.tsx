@@ -23,7 +23,9 @@ export function ArticleJsonLd({ article }: ArticleJsonLdProps) {
     dateModified: article.updatedAt || article.publishedAt,
     author: {
       '@type': 'Person',
+      '@id': `${SITE_URL}/#candice`,
       name: article.author.name,
+      url: SITE_URL,
       ...(article.author.avatarUrl && { image: article.author.avatarUrl }),
     },
     publisher: {
@@ -31,7 +33,9 @@ export function ArticleJsonLd({ article }: ArticleJsonLdProps) {
       name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/favicon.ico`, // À remplacer par logo.png
+        url: `${SITE_URL}/images/logo-publisher.png`,
+        width: 600,
+        height: 60,
       },
     },
     wordCount: article.wordCount,

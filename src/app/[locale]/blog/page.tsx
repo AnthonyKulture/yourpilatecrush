@@ -1,12 +1,15 @@
 import { buildMetadata } from '@/lib/seo';
 import { getAllArticles } from '@/lib/articles';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo.blog' });
   return buildMetadata({
-    title: 'Blog | Le Journal Pilate & Lagree',
-    description: 'Découvrez nos articles sur les méthodes Pilates, Lagree, conseils postures et bien-être global.',
+    title: t('title'),
+    description: t('description'),
     path: '/blog',
     locale,
   });
@@ -20,7 +23,7 @@ export default async function BlogIndexPage() {
       <div className="max-w-4xl mx-auto w-full">
         <h1 className="text-5xl font-display text-burgundy-deep mb-4">Le Journal</h1>
         <p className="text-xl mb-12 opacity-80">Conseils et expertises Pilates & Lagree.</p>
-        
+
         <div className="flex flex-col gap-8">
           {articles.map((article) => (
             <article key={article.slug} className="border border-burgundy-deep/10 p-6 rounded-2xl">
@@ -38,6 +41,9 @@ export default async function BlogIndexPage() {
               </div>
             </article>
           ))}
+          {articles.length === 0 && (
+            <p className="opacity-60 text-lg">Les articles arrivent bientôt.</p>
+          )}
         </div>
       </div>
     </main>
