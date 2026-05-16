@@ -9,11 +9,11 @@ export default function ReformerCard() {
   const t = useTranslations('home.methods.reformer');
 
   return (
-    <div className="w-full bg-sand p-8 sm:p-12 border-l-[3px] border-red-accent transition-all duration-[800ms] hover:-translate-y-1">
+    <div className="w-full bg-sand p-8 sm:p-12 border-l-[3px] border-red-accent transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-2 hover:shadow-xl hover:shadow-burgundy-deep/10 hover:border-burgundy-deep">
       <div className="max-w-[820px] space-y-4">
         <h3 className="text-[28px] sm:text-[36px] leading-tight text-burgundy-deep">
           {t.rich('title', {
-            em: (chunks) => <em className="signature-italic text-red-accent">{chunks}</em>
+            em: (chunks) => <em className="signature-italic signature-underline text-red-accent">{chunks}</em>
           })}
         </h3>
         <p className="text-[15px] sm:text-[16px] leading-[1.7] text-burgundy-deep/80 italic">

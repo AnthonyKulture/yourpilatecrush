@@ -37,19 +37,19 @@ export default function MethodCard({
     return (
       <>
         {parts[0]}
-        <em className="signature-italic text-red-accent">{italicWord}</em>
+        <em className="signature-italic signature-underline text-red-accent">{italicWord}</em>
         {parts[1]}
       </>
     );
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full rounded-lg overflow-hidden border border-burgundy-deep/5 transition-all duration-[800ms] group hover:-translate-y-1">
-      
+    <div className="flex flex-col lg:flex-row w-full rounded-lg overflow-hidden border border-burgundy-deep/5 transition-[transform,box-shadow] duration-500 ease-out group hover:-translate-y-2 hover:shadow-2xl hover:shadow-burgundy-deep/15">
+
       {/* Zone Gauche (60%) - Sand */}
       <div className="relative flex-[1.5] bg-sand p-8 sm:p-12 overflow-hidden">
         {/* Filigree Number */}
-        <span className="absolute -top-4 -left-2 font-display text-[120px] sm:text-[180px] leading-none text-[#D4C3B0]/60 select-none pointer-events-none">
+        <span className="absolute -top-4 -left-2 font-display text-[120px] sm:text-[180px] leading-none text-[#D4C3B0]/60 select-none pointer-events-none transition-transform duration-700 ease-out group-hover:-translate-x-2 group-hover:-translate-y-1">
           {number}
         </span>
 

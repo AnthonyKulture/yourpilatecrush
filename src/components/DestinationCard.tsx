@@ -26,16 +26,16 @@ export default function DestinationCard({
     return (
       <>
         {parts[0]}
-        <em className="signature-italic text-gold-champagne">{italicWord}</em>
+        <em className="signature-italic signature-underline text-gold-champagne">{italicWord}</em>
         {parts[1]}
       </>
     );
   };
 
   return (
-    <div className="flex-1 bg-red-primary p-8 sm:p-12 space-y-8 transition-all duration-[800ms] hover:bg-red-bright animate-in fade-in duration-1000">
+    <div className="group w-full h-full bg-red-primary p-8 sm:p-12 space-y-8 transition-[background-color] duration-500 ease-out hover:bg-red-bright">
       {/* Season Pill */}
-      <div className="inline-block border border-cream/30 rounded-pill px-4 py-2 bg-white/5">
+      <div className="inline-block border border-cream/30 rounded-pill px-4 py-2 bg-white/5 transition-[border-color,background-color] duration-500 ease-out group-hover:border-gold-champagne/60 group-hover:bg-white/10">
         <span className="text-[10px] font-sans font-medium uppercase tracking-[0.2em] text-cream/70">
           {season}
         </span>

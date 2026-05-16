@@ -38,7 +38,7 @@
   /* Animations (UI/UX Pro Max) */
   --animate-float: float 6s ease-in-out infinite;
   
-  --default-transition-duration: 800ms;
+  --default-transition-duration: 300ms;
   --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 
   @keyframes float {
@@ -49,6 +49,16 @@
   @keyframes moveBackground {
     from { background-position: 0% 0%; }
     to { background-position: 0% -1000%; }
+  }
+}
+
+/* Accessibility — respect users that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -79,7 +89,7 @@
   .bg-dark .signature-italic {
     @apply text-gold-champagne;
   }
-  
+
   .bg-light .signature-italic {
     @apply text-red-accent;
   }
@@ -93,7 +103,7 @@
   .editorial-divider {
     @apply flex items-center gap-4 w-full max-w-[720px] mx-auto my-20;
   }
-  .editorial-divider::before, 
+  .editorial-divider::before,
   .editorial-divider::after {
     content: "";
     @apply h-[1px] flex-1 bg-burgundy-deep;
@@ -101,4 +111,97 @@
   .divider-diamond {
     @apply w-2 h-2 rotate-45 bg-red-accent;
   }
+}
+
+/* ===== Lot B — Atmospheric & Editorial Animations ===== */
+
+/* Hero aurora — slow drifting radial gradients on dark backdrop */
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-3%, 2%, 0) scale(1.08); }
+}
+
+.hero-aurora {
+  background:
+    radial-gradient(ellipse 60% 40% at 22% 28%, rgba(228, 200, 152, 0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 38% at 78% 72%, rgba(174, 49, 52, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 30% at 50% 100%, rgba(228, 200, 152, 0.10) 0%, transparent 70%);
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Inline SVG grain — fractal noise overlay for editorial film texture */
+.hero-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+}
+
+/* Gold shimmer — sweeping gradient on signature italic over dark bg */
+@keyframes gold-sweep {
+  0%, 100% { background-position: 220% 0; }
+  50%      { background-position: -120% 0; }
+}
+
+.signature-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-gold-champagne) 0%,
+    var(--color-gold-champagne) 38%,
+    #fff4d8 50%,
+    var(--color-gold-champagne) 62%,
+    var(--color-gold-champagne) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gold-sweep 6s ease-in-out infinite;
+}
+
+/* Hero — dashed ring slow rotation */
+@keyframes hero-ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.hero-ring-spin {
+  transform-origin: center center;
+  transform-box: fill-box;
+  animation: hero-ring-spin 90s linear infinite;
+}
+
+/* Hero — scroll-down indicator (gold dot travelling down a line) */
+@keyframes hero-scroll-hint {
+  0%   { transform: translateY(-110%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(310%); opacity: 0; }
+}
+.hero-scroll-hint {
+  animation: hero-scroll-hint 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Drawing underline — scaleX from left when parent .in-view */
+.signature-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.05em;
+}
+.signature-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0.55;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1400ms cubic-bezier(0.22, 1, 0.36, 1) 400ms;
+}
+.in-view .signature-underline::after,
+.in-view.signature-underline::after {
+  transform: scaleX(1);
 }

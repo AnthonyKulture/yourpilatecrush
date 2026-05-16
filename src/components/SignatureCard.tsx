@@ -36,14 +36,14 @@ export default function SignatureCard({
     return (
       <>
         {parts[0]}
-        <em className="signature-italic text-gold-champagne">{italicWord}</em>
+        <em className="signature-italic signature-underline text-gold-champagne">{italicWord}</em>
         {parts[1]}
       </>
     );
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full bg-burgundy-deep rounded-lg overflow-hidden border-l-[3px] border-red-accent transition-all duration-[800ms] group hover:-translate-y-1">
+    <div className="flex flex-col lg:flex-row w-full bg-burgundy-deep rounded-lg overflow-hidden border-l-[3px] border-red-accent transition-[transform,box-shadow,border-color] duration-500 ease-out group hover:-translate-y-2 hover:shadow-2xl hover:shadow-burgundy-deep/30 hover:border-gold-champagne">
       {/* Col gauche - Narratif */}
       <div className="flex-1 p-8 sm:p-12 space-y-8 flex flex-col justify-center">
         <div className="space-y-4">

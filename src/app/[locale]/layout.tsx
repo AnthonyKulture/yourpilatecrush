@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "../globals.css"; // Fixed path
 import Header from "@/components/Header";
+import ScrollProgress from "@/components/ScrollProgress";
+import WhatsAppFloating from "@/components/WhatsAppFloating";
 import { GlassFilter } from "@/components/ui/liquid-glass";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale, getTranslations } from 'next-intl/server';
@@ -72,8 +74,10 @@ export default async function RootLayout({
           <LocalBusinessSchema siteUrl={SITE_URL} />
           <PersonSchema siteUrl={SITE_URL} />
           <GlassFilter />
+          <ScrollProgress />
           <Header />
           {children}
+          <WhatsAppFloating />
         </NextIntlClientProvider>
       </body>
     </html>

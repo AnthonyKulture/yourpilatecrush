@@ -26,11 +26,11 @@ export default function TariffCard({
   const isInverted = variant === 'inverted';
 
   return (
-    <div 
-      className={`flex flex-col items-center text-center p-8 min-h-[400px] transition-all duration-[800ms] hover:-translate-y-1 ${
-        isInverted 
-          ? 'bg-burgundy-deep text-cream border-none' 
-          : 'bg-cream border border-burgundy-deep/10 text-burgundy-deep'
+    <div
+      className={`group relative flex flex-col items-center text-center p-8 min-h-[400px] h-full transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-1 ${
+        isInverted
+          ? 'bg-burgundy-deep text-cream border-none hover:shadow-2xl hover:shadow-burgundy-deep/30'
+          : 'bg-cream border border-burgundy-deep/10 text-burgundy-deep hover:bg-white hover:shadow-xl hover:shadow-burgundy-deep/10'
       }`}
     >
       <div className="flex flex-col items-center h-full w-full">

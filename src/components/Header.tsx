@@ -32,6 +32,7 @@ export default function Header() {
   ];
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +42,30 @@ export default function Header() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Track which section is currently in the middle of the viewport
+  useEffect(() => {
+    const ids = ['pratiques', 'tarifs', 'destinations', 'contact'];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -93,18 +118,34 @@ export default function Header() {
             {/* Nav Items */}
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
-              const navClass = "group flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500";
+              const isActive = activeSection === link.href.replace('#', '');
+              const navClass = "group relative flex flex-col items-center px-4 py-1 rounded-xl hover:bg-white/10 transition-all duration-500";
+              const iconColor = isActive
+                ? 'text-red-accent'
+                : pastHero ? 'text-burgundy-deep/70' : 'text-cream/80';
+              const labelColor = isActive
+                ? 'text-red-accent'
+                : pastHero ? 'text-burgundy-deep/50' : 'text-cream/50';
               const inner = (
                 <>
                   <div className="relative p-1.5">
-                    <Icon 
-                      className={`w-4 h-4 transition-colors duration-500 group-hover:text-red-accent ${pastHero ? 'text-burgundy-deep/70' : 'text-cream/80'}`} 
-                      strokeWidth={1.5} 
+                    <Icon
+                      className={`w-4 h-4 transition-colors duration-500 group-hover:text-red-accent ${iconColor}`}
+                      strokeWidth={1.5}
                     />
                   </div>
-                  <span className={`text-[8px] font-sans font-medium uppercase tracking-[0.12em] transition-all duration-500 group-hover:text-red-accent ${pastHero ? 'text-burgundy-deep/50' : 'text-cream/50'}`}>
+                  <span className={`text-[8px] font-sans font-medium uppercase tracking-[0.12em] transition-all duration-500 group-hover:text-red-accent ${labelColor}`}>
                     {link.label}
                   </span>
+                  {/* Active indicator dot */}
+                  <span
+                    className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-red-accent transition-all duration-500"
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transform: `translateX(-50%) scale(${isActive ? 1 : 0.3})`,
+                    }}
+                    aria-hidden="true"
+                  />
                 </>
               );
               return link.isAnchor ? (
