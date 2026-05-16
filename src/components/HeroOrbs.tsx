@@ -47,7 +47,7 @@ export default function HeroOrbs() {
         className="absolute top-1/2 left-1/2 pointer-events-none"
         style={{
           transform: `translate(-50%, -50%) ${shift(12)}`,
-          transition: 'transform 600ms cubic-bezier(0.22,1,0.36,1)',
+          willChange: 'transform',
         }}
         aria-hidden="true"
       >
@@ -84,30 +84,21 @@ export default function HeroOrbs() {
       {/* Blurred gold orb — top-left */}
       <div
         className="absolute top-[16%] left-[6%] w-32 h-32 sm:w-44 sm:h-44 rounded-full bg-gold-champagne/25 blur-3xl pointer-events-none"
-        style={{
-          transform: shift(40),
-          transition: 'transform 700ms cubic-bezier(0.22,1,0.36,1)',
-        }}
+        style={{ transform: shift(40), willChange: 'transform' }}
         aria-hidden="true"
       />
 
       {/* Blurred red orb — bottom-right */}
       <div
         className="absolute bottom-[18%] right-[5%] w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-red-accent/30 blur-3xl pointer-events-none"
-        style={{
-          transform: shift(28),
-          transition: 'transform 700ms cubic-bezier(0.22,1,0.36,1)',
-        }}
+        style={{ transform: shift(28), willChange: 'transform' }}
         aria-hidden="true"
       />
 
       {/* Blurred gold orb — bottom-left */}
       <div
         className="absolute bottom-[12%] left-[18%] w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gold-champagne/15 blur-2xl pointer-events-none"
-        style={{
-          transform: shift(50),
-          transition: 'transform 700ms cubic-bezier(0.22,1,0.36,1)',
-        }}
+        style={{ transform: shift(50), willChange: 'transform' }}
         aria-hidden="true"
       />
     </>

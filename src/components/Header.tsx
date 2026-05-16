@@ -68,22 +68,30 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open (iOS Safari-safe pattern)
   useEffect(() => {
-    if (isOpen) {
-      // Save scroll position to restore on close
-      const scrollY = window.scrollY;
-      document.body.style.overflow = 'hidden';
-      document.body.style.top = `-${scrollY}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = '';
-      document.body.style.top = '';
-      if (scrollY) window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
+    if (!isOpen) return;
+
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.width = '100%';
+    body.style.overflow = 'hidden';
+
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.top = '';
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.width = prev.width;
+      body.style.overflow = prev.overflow;
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen]);
 
@@ -229,13 +237,19 @@ export default function Header() {
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(247,238,229,0.0) 60%)' }} />
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-col justify-between h-full w-full px-10 py-28">
-          {/* Nav links */}
-          <nav className="flex flex-col gap-6">
+        {/* Content — sized to fit smallest realistic viewport (iPhone SE ~667px) without internal scroll */}
+        <div
+          className="relative z-10 flex flex-col h-full w-full px-7 overflow-hidden"
+          style={{
+            paddingTop: 'calc(5rem + env(safe-area-inset-top, 0px))',
+            paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
+          }}
+        >
+          {/* Nav links — vertically centred to absorb extra space on tall phones */}
+          <nav className="flex flex-col gap-3 flex-1 justify-center">
             {NAV_LINKS.map((link, i) => {
               const Icon = link.icon;
-              const mobileClass = "group flex items-center justify-between border-b border-burgundy-deep/10 pb-6";
+              const mobileClass = "group flex items-center justify-between border-b border-burgundy-deep/10 pb-3";
               const mobileStyle = {
                 transform: isOpen ? 'translateX(0)' : 'translateX(24px)',
                 opacity: isOpen ? 1 : 0,
@@ -245,11 +259,11 @@ export default function Header() {
               };
               const mobileInner = (
                 <>
-                  <div className="flex items-center gap-5">
-                    <div className="w-12 h-12 rounded-2xl bg-burgundy-deep/5 border border-burgundy-deep/8 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-burgundy-deep" strokeWidth={1.2} />
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-burgundy-deep/5 border border-burgundy-deep/8 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-burgundy-deep" strokeWidth={1.2} />
                     </div>
-                    <span className="text-[38px] font-display italic text-burgundy-deep leading-none">
+                    <span className="text-[26px] sm:text-[30px] font-display italic text-burgundy-deep leading-none">
                       {link.label}
                     </span>
                   </div>
@@ -278,25 +292,40 @@ export default function Header() {
                 </Link>
               );
             })}
-            <div className="mt-8 px-2">
+            <div className="mt-4 px-2">
               <LanguageSwitcher variant="expanded" />
             </div>
           </nav>
 
-          {/* Footer */}
-          <div 
-            className="flex flex-col gap-6"
+          {/* Contact CTA block — visually distinct, anchored to the bottom */}
+          <div
+            className="flex flex-col gap-4 pt-5 mt-4 border-t border-burgundy-deep/10"
             style={{
               opacity: isOpen ? 1 : 0,
               transition: 'opacity 600ms ease',
               transitionDelay: '450ms',
             }}
           >
-            <div className="h-[1px] w-12 bg-burgundy-deep/10" />
-            <p className="text-[9px] font-sans uppercase tracking-[0.4em] text-burgundy-deep/40">Expert Pilates & Lagree</p>
-            <div className="flex gap-10 text-[12px] font-sans font-medium text-red-accent">
-              <a href="https://wa.me/33651590216" className="hover:opacity-70 transition-opacity">WhatsApp</a>
-              <a href="mailto:yourpilatescrush@gmail.com" className="hover:opacity-70 transition-opacity">Email</a>
+            <p className="text-[10px] font-sans uppercase tracking-[0.35em] text-burgundy-deep/45">
+              Expert Pilates &amp; Lagree
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href="https://wa.me/33651590216"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-full border border-burgundy-deep/15 bg-white/70 py-3 text-[12px] font-sans font-semibold text-burgundy-deep active:scale-[0.97] transition-transform"
+              >
+                <span className="text-[9px] uppercase tracking-[0.25em] text-red-accent/70">WhatsApp</span>
+              </a>
+              <a
+                href="mailto:yourpilatescrush@gmail.com"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-full border border-burgundy-deep/15 bg-white/70 py-3 text-[12px] font-sans font-semibold text-burgundy-deep active:scale-[0.97] transition-transform"
+              >
+                <span className="text-[9px] uppercase tracking-[0.25em] text-red-accent/70">Email</span>
+              </a>
             </div>
           </div>
         </div>
